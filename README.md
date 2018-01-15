@@ -12,12 +12,8 @@ Our back-end would comprise of two databases. The first database will contain a 
 
 
 ## Proposed Timeline
-Monday 1/15 - Wireframes and User Stories completed
-
-Thursday 1/18 - MVP of app completed
-
-Friday 1/19 - User testing and final tweaks will be made
-
-Monday 1/22 - Presentation completed
-
-Tuesday 1/23 - Group will present to class
+* Monday 1/15 - Wireframes and User Stories completed
+* Thursday 1/18 - MVP of app completed
+* Friday 1/19 - User testing and final tweaks will be made
+* Monday 1/22 - Presentation completed
+* Tuesday 1/23 - Group will present to class
