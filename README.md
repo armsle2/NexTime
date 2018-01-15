@@ -1,7 +1,7 @@
 # NextTime App 
 
 ## Contributors:
-Leaviel Armstrong, Lisa Ewart, Taly Huang, and Janessa Hanna
+Leaveil Armstrong, Lisa Ewart, Taly Huang, and Janessa Hanna
 
 ## Concept:
 The purpose of the NextTime app is to create an interactive to-do list that tracks location-based tasks for users. The app will also notify them when they are near a location that would allow them to accomplish their task. For example, if the user lists “Buy Onions” or “Pick-up clothes from the Dry Cleaners” as tasks that they need to accomplish, the app will store this information and notify them when they are close to a grocery store or a local dry cleaner.
