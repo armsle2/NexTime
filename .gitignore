@@ -60,3 +60,5 @@ typings/
 #Sketch Files
 wireframes.sketch
 
+.DS_Store
+
