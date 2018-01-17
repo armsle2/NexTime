@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Item = sequelize.define("Item", {
-    title: {
+    task: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -9,27 +9,28 @@ module.exports = function(sequelize, DataTypes) {
     },
     body: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
        
     },
     category: {
       type: DataTypes.STRING,
-      
-    },
-    specificBusiness: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    zipCode: {
-      type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false 
     }
 
   });
+
+  Item.associate = models=>{
+    Item.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+    Item.belongsTo(models.Category, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  }
   return Item;
 };
 
