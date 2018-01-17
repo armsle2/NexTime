@@ -10,7 +10,7 @@ $(document).ready(function() {
     function insertTodo(event) {
         event.preventDefault();
         var newToDo = {
-            task: addTask.val().trim(),
+            task: addTask.val().trim()
             body: addBody.val().trim(),
             category: addCategory.val().trim(),
             complete: false
