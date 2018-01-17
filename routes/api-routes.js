@@ -14,9 +14,9 @@ module.exports = function(app) {
 
   // GET route for getting all of the posts
   app.get("/api/todos/", function(req, res) {
-    db.Item.findAll({})
-    .then(function(dbPost) {
-      res.json(dbPost);
+    db.Item.findAll()
+    .then(function(dbItem) {
+      res.json(dbItem);
     });
   });
 
@@ -25,16 +25,13 @@ module.exports = function(app) {
   app.post("/api/todos/", function (req, res){
     console.log(req.body);
     db.Item.create({
-      title: req.body.title,
+      task: req.body.task,
       body: req.body.body,
-      category: req.body.category,
-      specificBusiness: req.body.specificBusiness,
-      address: req.body.address,
-      zipCode: req.body.zipCode,
+      category: req.body.category
     
     })
-    .then(function(dbPost) {
-      res.json(dbPost);
+    .then(function(dbItem) {
+      res.json(dbItem);
     });
   });
 }

@@ -1,7 +1,7 @@
 -- Drops the todolist if it exists currently --
-DROP DATABASE IF EXISTS Items;
+-- DROP DATABASE IF EXISTS Items;
 -- Creates the "todolist" database --
-CREATE DATABASE Items;
+CREATE DATABASE nexTime;
 
 
 

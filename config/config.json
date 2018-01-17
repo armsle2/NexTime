@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "Tuckerjj1977!@#",
-    "database": "Items",
+    "password": null,
+    "database": "nexTime",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
