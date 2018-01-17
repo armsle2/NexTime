@@ -15,10 +15,12 @@ module.exports = function(app) {
   // GET route for getting all of the posts
   app.get("/api/todos/", function(req, res) {
     db.Item.findAll({})
-    .then(function(dbPost) {
-      res.json(dbPost);
+    .then(function(dbItem) {
+      res.json(dbItem);
     });
   });
+
+
 
   
   // POST route for saving a new post
@@ -33,8 +35,8 @@ module.exports = function(app) {
       zipCode: req.body.zipCode,
     
     })
-    .then(function(dbPost) {
-      res.json(dbPost);
+    .then(function(dbItem) {
+      res.json(dbItem);
     });
   });
 }

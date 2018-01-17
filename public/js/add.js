@@ -4,20 +4,15 @@ $(document).ready(function() {
 
     var addTitle = $("#title");
     var addCategory = $("#category");
-    var addAddress = $("#address");
-    var addZipCode = $("#zipCode");
+    
     var addBody = $("#body");
-    var addSpecific = $("#specificBusiness");
-
+    
 
     function insertTodo(event) {
         event.preventDefault();
         var newToDo = {
             title: addTitle.val().trim(),
             category: addCategory.val().trim(),
-            specificBusiness: addSpecific.val().trim(),
-            address: addAddress.val().trim(),
-            zipCode: addZipCode.val().trim(),
             body: addBody.val().trim(),
             complete: false
         };
