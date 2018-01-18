@@ -28,7 +28,7 @@ $(document).ready(function() {
             items = data;
             console.log("Current Items: ", items);
             if (!items || !items.length) {
-                displayEmpty();
+                displayEmptyItem();
             } else {
                 initializeRows();
             }
@@ -46,7 +46,7 @@ $(document).ready(function() {
             items = data;
             console.log(items);
             if (!items || !items.length) {
-                displayEmpty1();
+                displayEmptyCategory();
             } else {
                 initializeRowsCategory();
             }
@@ -182,7 +182,7 @@ $(document).ready(function() {
 
     function createDetail(item) {
 
-        var task = item.title;
+        var task = item.task;
         var category = item.category;
         var notes = item.body
         var newItemDetailDiv = $("<div>")
@@ -203,7 +203,7 @@ $(document).ready(function() {
     }
 
     //This message alerts the user that they have no items in their list
-    function displayEmpty(id) {
+    function displayEmptyItem(id) {
         var query = window.location.search;
         var partial = "";
 
@@ -216,7 +216,7 @@ $(document).ready(function() {
     }
 
     //This message alerts the user they have no items in a specific category.
-    function displayEmpty1(id) {
+    function displayEmptyCategory(id) {
         var query = window.location.search;
         var partial = "";
 
@@ -229,21 +229,31 @@ $(document).ready(function() {
     }
 
     
-function googleAPI(){
+function googleAPI(keyword, location, ){
 
   var apiKey = "AIzaSyDku5hGYht2Deh0IIUDx0TEwx7uZH7llks";
-  var keyWord = "grocery_or_supermarket";
+  var keyWord = "electronics_store";
 
-  var queryURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705%2C-84.312278&radius=50000&type=${keyWord}&key=${apiKey}`;
+  var queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705,-84.312278&radius=8046&type=${keyWord}&key=${apiKey}`;
     // console.log(queryURL);
 
    $.ajax({
         url: queryURL,
         method: "GET"
-    }).done(function(response){
-        console.log(response);
+    }).done(function(res){
+        // console.log(res);
+        res.results.sort(function(a, b) {
+              return b.rating - a.rating;
+          });
+        console.log(res.results);
+        res.results.forEach((result, index)=>{
+          console.log(`${index+1}: \n Name: ${result.name}\n Address: ${result.vicinity} \n Rating: ${result.rating}`);
+        })
+
     });
 };
+
+
 
 
 
