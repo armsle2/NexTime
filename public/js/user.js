@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    googleAPI();
 
     // Container holds all of our posts
     var toDoContainer = $(".list-group");
@@ -116,7 +117,6 @@ $(document).ready(function() {
         return newItemList;
     }
 
-  googleAPI();
   // InitializeRows handles appending all of our constructed item HTML inside
   // toDoContainer
     // InitializeRowsCatgory handles appending all of our constructed item HTML of a specific category inside
@@ -180,24 +180,6 @@ $(document).ready(function() {
 
     //This adds the specific items to the detailed view.
 
-
-
-function googleAPI(){
-
-    var apiKey = "AIzaSyDku5hGYht2Deh0IIUDx0TEwx7uZH7llks";
-    var keyWord = "grocery_or_supermarket";
-
-    var queryURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705%2C-84.312278&radius=50000&type=${keyWord}&key=${apiKey}`;
-      // console.log(queryURL);
-
-     $.ajax({
-          url: queryURL,
-          method: "GET"
-      }).done(function(response){
-          console.log(response);
-      });
-};
-
     function createDetail(item) {
 
         var task = item.title;
@@ -245,6 +227,23 @@ function googleAPI(){
             "'>here</a> to return to your list.");
         toDoContainer.append(messageh2);
     }
+
+    
+function googleAPI(){
+
+  var apiKey = "AIzaSyDku5hGYht2Deh0IIUDx0TEwx7uZH7llks";
+  var keyWord = "grocery_or_supermarket";
+
+  var queryURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705%2C-84.312278&radius=50000&type=${keyWord}&key=${apiKey}`;
+    // console.log(queryURL);
+
+   $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function(response){
+        console.log(response);
+    });
+};
 
 
 
