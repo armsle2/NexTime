@@ -10,7 +10,7 @@ $(document).ready(function() {
  // $(document).on("click", "button.delete", handleItemDelete);
   //$(document).on("click", "button.edit", handleItemEdit);
   //$(document).on("click", "button.specificItem", handleDetailView);
- // var items;
+ var items;
 
   //This captures the ID of the item for which we want the more detailed view
 
@@ -74,7 +74,7 @@ $(document).ready(function() {
     //var newItem = $("<div>" + item.title + "</div>");
 
 
-    newItemList.append(item.title);  
+    newItemList.append(item.task);  
     newItemList.append(deleteBtn);
     newItemList.append(editBtn);
     

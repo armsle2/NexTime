@@ -13,10 +13,10 @@ var db = require("../models");
 module.exports = function(app) {
 
   // GET route for getting all of the posts
-  app.get("/api/todos/", function(req, res) {
+  app.get("/api/users/", function(req, res) {
     db.Item.findAll()
-    .then(function(dbItem) {
-      res.json(dbItem);
+    .then(function(dbUser) {
+      res.json(dbUser);
     });
   });
 
@@ -24,17 +24,16 @@ module.exports = function(app) {
 
   
   // POST route for saving a new post
-  app.post("/api/todos/", function (req, res){
+  app.post("/api/users/", function (req, res){
     console.log(req.body);
-    db.Item.create({
-      task: req.body.task,
-      body: req.body.body,
-      category: req.body.category,
-      CategoryId: req.body.CategoryId,
-      UserId: req.body.UserId
+    db.User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      username: req.body.username,
+      password: req.body.password
     })
-    .then(function(dbItem) {
-      res.json(dbItem);
+    .then(function(dbUser) {
+      res.json(dbUser);
     });
   });
 }

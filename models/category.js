@@ -1,19 +1,24 @@
 module.exports = function(sequelize, DataTypes) {
   var Category = sequelize.define("Category", {
-    type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1]
+        },
       }
-    },
-    timestamp: false
-  });
+    }, {
+      timestamps: false
+    });
 
   Category.associate = models=>{
-    Category.hasMany(models.Item)
+    Category.hasMany(models.Item, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
   }
-  return Item;
+  return Category;
 };
 
 
