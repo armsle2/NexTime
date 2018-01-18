@@ -45,6 +45,7 @@ $(document).ready(function() {
 
   // Getting the initial list of toDos
   getItems();
+  googleAPI();
   // InitializeRows handles appending all of our constructed item HTML inside
   // toDoContainer
   function initializeRows() {
@@ -95,7 +96,21 @@ $(document).ready(function() {
   }
 
 
+function googleAPI(){
 
+    var apiKey = "AIzaSyDku5hGYht2Deh0IIUDx0TEwx7uZH7llks";
+    var keyWord = "grocery_or_supermarket";
+
+    var queryURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705%2C-84.312278&radius=50000&type=${keyWord}&key=${apiKey}`;
+      // console.log(queryURL);
+
+     $.ajax({
+          url: queryURL,
+          method: "GET"
+      }).done(function(response){
+          console.log(response);
+      });
+};
 
 
 });

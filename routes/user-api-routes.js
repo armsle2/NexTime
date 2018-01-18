@@ -38,7 +38,3 @@ module.exports = function(app) {
   });
 }
 
-
-
- 
-   
