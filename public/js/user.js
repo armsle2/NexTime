@@ -11,7 +11,7 @@ $(document).ready(function() {
     // Click events for the edit and delete buttons and specific items
     $(document).on("click", "button.delete", deleteItem);
     //Note:  Need to include the edit functionality.
-    //$(document).on("click", "button.edit", handleItemEdit);
+   // $(document).on("click", "button.edit", updateItem);
     $(document).on("click", "a.specificItem", getSpecific);
     $(document).on("click", "button.grocery", getCategory);
     $(document).on("click", "button.bank", getCategory);
@@ -145,6 +145,27 @@ $(document).ready(function() {
 
         $.ajax({
             method: "DELETE",
+            url: "/api/todos/" + id
+        }).then(getItems);
+    }
+
+
+    //This updates an item when the update button is pushed.
+    
+
+    function startUpdate(event) {
+        var id = $(this).data("id");
+        console.log("This  " + id);
+        getSpecific();
+
+    }
+
+
+    function updateItem(event) {
+        
+
+        $.ajax({
+            method: "PUT",
             url: "/api/todos/" + id
         }).then(getItems);
     }
