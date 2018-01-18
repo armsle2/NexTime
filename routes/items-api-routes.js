@@ -20,10 +20,40 @@ module.exports = function(app) {
     });
   });
 
+  //GET route for getting one item for detailed view
+
+  app.get("/api/todos/:id", function(req, res) {
+    db.Item.findOne({
+      where: {
+        id: req.params.id
+              }
+    })
+    .then(function(dbItem) {
+      
+      res.json(dbItem);
+
+    });
+  });
+
+ 
+
+//ROUTE TO DELETE ITEMS
+   app.delete("/api/todos/:id", function(req, res) {
+   
+    db.Item.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbItem) {
+      res.json(dbItem);
+    });
+
+  });
+
 
 
   
-  // POST route for saving a new post
+  // POST route for saving a new todo
   app.post("/api/todos/", function (req, res){
     console.log(req.body);
     db.Item.create({
