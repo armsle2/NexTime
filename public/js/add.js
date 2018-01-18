@@ -1,10 +1,11 @@
 $(document).ready(function() {
+        getCategories();
 
     $(document).on("click", "#add", insertTodo);
 
     var addTask = $("#task");
     var addBody = $("#body");
-    var addCategory = $("#category");
+    var category = $("#category");
 
 
     function insertTodo(event) {
@@ -12,9 +13,9 @@ $(document).ready(function() {
         var newToDo = {
             task: addTask.val().trim(),
             body: addBody.val().trim(),
-            category: addCategory.val().trim(),
+            category: category.find(':selected').text(),
             UserId: 1,
-            CategoryId: 1,
+            CategoryId: category.val(),
             complete: false
         };
 
@@ -25,9 +26,23 @@ $(document).ready(function() {
             password: 'password'
         }
         console.log(newToDo);
-        // createUser(newUser);
         submitToDo(newToDo);
 
+    }
+
+    function getCategories(){
+        $.get('/api/categories/', function(data){
+            console.log(data);
+            let select = $('#category');
+            let option = $(`<option value="">`);
+            select.append(option);
+            data.forEach((result, index)=>{
+                select.append($('<option>', {
+                    value: result.id,
+                    text: result.type
+                }));
+            })
+        })
     }
 
     function submitToDo(Item) {
