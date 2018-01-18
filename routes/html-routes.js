@@ -26,9 +26,5 @@ app.get("/add", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/add.html"));
   });
 
-app.get ("/detailView", function(req, res){
-  res.sendFile(path.join(__dirname, "../public/detailView.html"));
-});
- 
 
 };

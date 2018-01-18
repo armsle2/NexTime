@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Item = sequelize.define("Item", {
-    title: {
+    task: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -16,19 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       
     },
-    specificBusiness: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    zipCode: {
-      type: DataTypes.STRING,
-      allowNull: true
-    }
-
+    
   });
   return Item;
 };

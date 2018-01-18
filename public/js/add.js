@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $(document).on("click", "#add", insertTodo);
 
-    var addTitle = $("#title");
+    var addTask = $("#task");
     var addCategory = $("#category");
     
     var addBody = $("#body");
@@ -11,7 +11,7 @@ $(document).ready(function() {
     function insertTodo(event) {
         event.preventDefault();
         var newToDo = {
-            title: addTitle.val().trim(),
+            task: addTask.val().trim(),
             category: addCategory.val().trim(),
             body: addBody.val().trim(),
             complete: false
