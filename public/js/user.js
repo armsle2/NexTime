@@ -14,7 +14,10 @@ $(document).ready(function() {
     //$(document).on("click", "button.edit", handleItemEdit);
     $(document).on("click", "a.specificItem", getSpecific);
     $(document).on("click", "button.grocery", getCategory);
-    
+    $(document).on("click", "button.bank", getCategory);
+    $(document).on("click", "button.pharmacy", getCategory);
+
+
     var items;
 
     // This function grabs items from the database and updates the view
@@ -54,9 +57,9 @@ $(document).ready(function() {
     getItems();
 
 
-// InitializeRows handles appending all of our constructed item HTML inside
+    // InitializeRows handles appending all of our constructed item HTML inside
     // toDoContainer for the filtered list
- function initializeRows() {
+    function initializeRows() {
         toDoContainer.empty();
         userName.empty();
         //NOTE:  We will need to code this once we figure out how we are capturing the user info.
@@ -68,16 +71,16 @@ $(document).ready(function() {
         groceryBtn.addClass("grocery btn btn-default");
         groceryBtn.data("category", "Groceries")
         var bankBtn = $("<button>");
-        bankBtn.text("bank");
+        bankBtn.text("banking");
         bankBtn.addClass("bank btn btn-default");
-        bankBtn.data("category", "Groceries")
+        bankBtn.data("category", "Banking")
         var pharmacyBtn = $("<button>");
         pharmacyBtn.text("pharmacy");
         pharmacyBtn.addClass("pharmacy btn btn-default");
-        pharmacyBtn.data("category", "Groceries")
-        
+        pharmacyBtn.data("category", "Pharmacy")
+
         //Add more category buttons once we decide on categories
-        
+
         for (var i = 0; i < items.length; i++) {
             itemsToAdd.push(createNewRow(items[i]));
         }
@@ -87,7 +90,7 @@ $(document).ready(function() {
         toDoContainer.append(bankBtn);
         toDoContainer.append(pharmacyBtn);
         //We will need to append other category buttons once we decide on categories
-       // userName.append("Hello" + user"!");
+        // userName.append("Hello" + user"!");
     }
 
     // This function constructs an item's HTML
@@ -114,7 +117,7 @@ $(document).ready(function() {
         return newItemList;
     }
 
-    
+
 
     // InitializeRowsCatgory handles appending all of our constructed item HTML of a specific category inside
     // toDoContainer for the filtered list.  It also runs create new row function, but only for rows in the specific category.
@@ -133,7 +136,7 @@ $(document).ready(function() {
         panelHeading.append(category)
     }
 
-//This deletes an item when the delete button is pushed.
+    //This deletes an item when the delete button is pushed.
     function deleteItem(event) {
         event.stopPropagation();
         //toDoContainer.empty();
@@ -146,7 +149,7 @@ $(document).ready(function() {
         }).then(getItems);
     }
 
-//This gets a specific item from the server and initiates the function that builds the detailed view.
+    //This gets a specific item from the server and initiates the function that builds the detailed view.
 
     function getSpecific(event) {
         event.stopPropagation();
@@ -162,7 +165,7 @@ $(document).ready(function() {
 
     }
 
-//This creates the detailed view
+    //This creates the detailed view
     function initializeDetail(event) {
 
         toDoContainer.empty();
@@ -176,7 +179,7 @@ $(document).ready(function() {
 
     }
 
-//This adds the specific items to the detailed view.
+    //This adds the specific items to the detailed view.
 
 
     function createDetail(item) {
@@ -203,7 +206,7 @@ $(document).ready(function() {
         return newItemDetailDiv;
     }
 
-//This message alerts the user that they have no items in their list
+    //This message alerts the user that they have no items in their list
     function displayEmpty(id) {
         var query = window.location.search;
         var partial = "";
@@ -216,7 +219,7 @@ $(document).ready(function() {
         toDoContainer.append(messageh2);
     }
 
-//This message alerts the user they have no items in a specific category.
+    //This message alerts the user they have no items in a specific category.
     function displayEmpty1(id) {
         var query = window.location.search;
         var partial = "";
