@@ -24,7 +24,7 @@ module.exports = function(app) {
 
 
  // GET route for getting all of the posts
-  app.get("/api/todos/:category_id", function(req, res) {
+  app.get("/api/todos/category/:category_id", function(req, res) {
     db.Item.findAll({
       where: {
         CategoryId: req.params.category_id
