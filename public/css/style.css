@@ -41,7 +41,7 @@ h4 {
     
 }
 
-#add-btn {
+.add-btn {
     display: block;
     width: 100%;
     position: fixed;
@@ -87,7 +87,7 @@ h4 {
 a {
     color: black;
     font-size: 20px;
-    padding: 25px;
+/*    padding: 25px;*/
 }
 
 .boxindex {
@@ -155,7 +155,7 @@ form {
     padding: 2px;
     margin: 0 5px;
 }
-
+    
 .btn-check{
     float: right;
     padding: 2px;
@@ -170,4 +170,34 @@ form {
 
 .list-group {
     margin-bottom: 100px;
+}
+
+.close-x {
+    width: 100%;
+    text-align: right;
+    padding: 0;
+}
+
+.submit {
+    background-color: #18bc9c;
+    border: 0;
+    color: #000000;
+}
+
+.back {
+    text-align: center;
+}
+
+.btn-default{
+    display: block;
+    width: 100%;
+}
+
+.btn-delete-ind {
+    display: block;
+    width: 100%;
+    padding: 2px;
+    margin: 0 5px;
+    color: #ffffff;
+    background-color: #e74c3c;
 }
