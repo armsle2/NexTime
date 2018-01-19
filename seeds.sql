@@ -1,13 +1,13 @@
 INSERT INTO Users(firstName, lastName, username, password)
 VALUES ('Bob', 'James', 'Bobby-J', 'password');
 
-INSERT INTO Categories(type)
-VALUES ('Groceries'),
-('Pharmacy'),
-('Banking'),
-('Dry Cleaner'),
-('Post Office'),
-('Electronics');
+INSERT INTO Categories(type, type_name)
+VALUES ('Groceries', 'grocery_or_supermarket'),
+('Pharmacy', 'pharmacy'),
+('Banking', 'bank'),
+('Mall', 'shopping_mall'),
+('Post Office', 'post_office'),
+('Electronics', 'electronics_store');
 
 INSERT INTO Items(task, body, category, CategoryId, UserId)
 VALUES ('Grocery Shopping', 'need onions!', 'Groceries', 1, 1),
