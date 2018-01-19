@@ -22,6 +22,20 @@ module.exports = function(app) {
     });
   });
 
+
+ // GET route for getting all of the posts
+  app.get("/api/todos/:category_id", function(req, res) {
+    db.Item.findAll({
+      where: {
+        CategoryId: req.params.category_id
+      },
+      include: [db.Category]
+    })
+    .then(function(dbItem) {
+      res.json(dbItem);
+    });
+  });
+
   //GET route for getting one item for detailed view
 
   app.get("/api/todos/:id", function(req, res) {

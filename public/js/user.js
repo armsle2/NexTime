@@ -44,10 +44,10 @@ $(document).ready(function() {
     //THis function allows user to view items by category
     function getCategory(event) {
         event.stopPropagation();
-        category = $(this).data("category");
+        categoryID = $(this).data("category_id");
         console.log(this);
-        console.log("This " + category);
-        $.get("/api/todos/category/" + category, function(data) {
+        console.log("This " + categoryID);
+        $.get(`/api/todos/${categoryID}/`, function(data) {
             console.log("Items", data);
             items = data;
             console.log(items);
@@ -122,6 +122,7 @@ $(document).ready(function() {
         categoryIcon.addClass(item.Category.type_name);
         categoryIcon.html("<img src='../img/"+item.Category.type_name+".png'/>");
         categoryIcon.data("category", item.Category.type_name);
+        categoryIcon.data("category_id", item.Category.id);
 
         
         specificItem = $("<a class = specificItem></a>");

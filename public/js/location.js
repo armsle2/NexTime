@@ -41,7 +41,7 @@ $(document).ready(function() {
 			    // googleAPI(type, lat1, lon1);
 			    let positionDiff = distance(lat1, lon1, lat2, lon2)
 			    //below is a condtional for if the users new location (lat2,lon2) is more than 1 mile away from their first location (lat1,lon1)
-			    // if(positionDiff > 1){
+			    if(positionDiff > 1){
 			    	let categoryTypeName = [];
 			    	//running loop based on user's tasks
 			    	data.forEach((results, index)=>{
@@ -62,7 +62,7 @@ $(document).ready(function() {
 						    googleAPI(results, lat2, lon2);
 		    			})
 		    		}
-			    // }   
+			    }   
 			}
 
 			function distance(lat1, lon1, lat2, lon2, unit) {
