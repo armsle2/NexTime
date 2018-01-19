@@ -21,6 +21,11 @@ h3 {
     color: #000000;
 }
 
+h4 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
 .current-tasks {
     background-color: #F8D300;
     text-transform: uppercase;
@@ -90,7 +95,25 @@ a {
 }
 
 form {
-    padding: 20px;
+    padding: 4% 5%;
+    background-color: rgba(114, 114, 114, 0.11);
+    width: 60%;
+    margin: 0 auto;
+}
+
+.boxindex{
+    border: 0;
+}
+
+.form-control {
+    height: 45px;
+    padding: 10px 15px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #FFFFFF;
+    background-color: #727272;
+    border: 1px solid #979797;
+    border-radius: 4px;
 }
 
 #parameters2 {
