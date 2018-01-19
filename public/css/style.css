@@ -1,9 +1,84 @@
+body {
+    background-color: #D8D8D8;
+    color: 000000;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 1%;
+    color: #000000;
+}
+
+h2 {
+    color: #000000;
+}
+
+h3 {
+    text-align: center;
+    margin: 0;
+    padding: 1%;
+    color: #000000;
+}
+
+.current-tasks {
+    background-color: #F8D300;
+    text-transform: uppercase;
+    padding: 10px;
+    text-align: center;
+}
+
+#userName{
+    border-bottom: solid 2px #000000;
+}
+
+.container {
+    
+}
+
+#add-btn {
+    display: block;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 50px;
+    background-color: #D0021B;
+    border: #979797 1px solid;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin: 15px 30px;
+    background-color: #ffffff;
+    border: 1px solid #ecf0f1;
+    border-radius: 10px;
+}
+
+.landing {
+    padding: 25%;
+}
+
+.userContainer {
+    text-align: center;
+    padding: 2%;
+}
+
+.btn-success {
+    border-radius: 50px;
+}
+
 .input-group {
     width: 100%;
 }
 
 a {
     color: black;
+    font-size: 20px;
+    padding: 25px;
 }
 
 .boxindex {
@@ -18,9 +93,6 @@ form {
     padding: 20px;
 }
 
-
-
-
 #parameters2 {
     background-color: blue;
     color: white;
@@ -28,4 +100,21 @@ form {
     border-radius: 10px 10px 0 0;
     padding-left: 15px;
     margin-top: 20px;
+}
+
+.specificItem {
+    position: relative;
+}
+
+.btn-danger {
+    position: absolute;
+    right: 10px;
+}
+
+.btn-edit {
+    color: #ffffff;
+    background-color: #95a5a6;
+    border-color: #95a5a6;
+    position: absolute;
+    right: 70px;
 }

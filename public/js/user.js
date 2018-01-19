@@ -65,17 +65,17 @@ $(document).ready(function() {
         //NOTE:  We will need to code this once we figure out how we are capturing the user info.
         //var user = 
         var itemsToAdd = [];
-        var addButton = $("<button><a href='/add'>Add an Item</a> </button>");
+        var addButton = $("<button id='add-btn'><a href='/add'><img src='../img/plus-circle.png'/></button>");
         var groceryBtn = $("<button>");
-        groceryBtn.text("grocery");
+        groceryBtn.html("<img src='../img/star.png' />");
         groceryBtn.addClass("grocery btn btn-default");
         groceryBtn.data("category", "Groceries")
         var bankBtn = $("<button>");
-        bankBtn.text("banking");
+        bankBtn.html("<img src='../img/box.png' />");
         bankBtn.addClass("bank btn btn-default");
         bankBtn.data("category", "Banking")
         var pharmacyBtn = $("<button>");
-        pharmacyBtn.text("pharmacy");
+        pharmacyBtn.html("<img src='../img/globe.png' />");
         pharmacyBtn.addClass("pharmacy btn btn-default");
         pharmacyBtn.data("category", "Pharmacy")
 
@@ -99,12 +99,12 @@ $(document).ready(function() {
         var newItemList = $("<li>");
         newItemList.addClass("list-group-item new-item");
         var deleteBtn = $("<button>");
-        deleteBtn.text("x");
+        deleteBtn.html("<img src='../img/trash-2.png'/>");
         deleteBtn.data("id", item.id);
         deleteBtn.addClass("delete btn btn-danger");
         var editBtn = $("<button>");
-        editBtn.text("EDIT");
-        editBtn.addClass("edit btn btn-default");
+        editBtn.html("<img src='../img/edit.png'/>");
+        editBtn.addClass("edit btn btn-edit");
         editBtn.data("id", item.id);
         specificItem = $("<a class = specificItem></a>");
         specificItem.text(item.task);
@@ -182,7 +182,7 @@ $(document).ready(function() {
 
     function createDetail(item) {
 
-        var task = item.title;
+        var task = item.task;
         var category = item.category;
         var notes = item.body
         var newItemDetailDiv = $("<div>")
@@ -234,7 +234,7 @@ function googleAPI(){
   var apiKey = "AIzaSyDku5hGYht2Deh0IIUDx0TEwx7uZH7llks";
   var keyWord = "grocery_or_supermarket";
 
-  var queryURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705%2C-84.312278&radius=50000&type=${keyWord}&key=${apiKey}`;
+  var queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705%2C-84.312278&radius=50000&type=${keyWord}&key=${apiKey}`;
     // console.log(queryURL);
 
    $.ajax({
