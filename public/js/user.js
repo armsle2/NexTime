@@ -68,19 +68,20 @@ $(document).ready(function() {
         //NOTE:  We will need to code this once we figure out how we are capturing the user info.
         //var user = 
         var itemsToAdd = [];
-        var addButton = $("<button id='add-btn'><a href='/add'><img src='../img/plus-circle.png'/></button>");
-        var groceryBtn = $("<button>");
-        groceryBtn.html("<img src='../img/star.png' />");
-        groceryBtn.addClass("grocery btn btn-default");
-        groceryBtn.data("category", "Groceries");
-        var bankBtn = $("<button>");
-        bankBtn.html("<img src='../img/box.png' />");
-        bankBtn.addClass("bank btn btn-default");
-        bankBtn.data("category", "Banking")
-        var pharmacyBtn = $("<button>");
-        pharmacyBtn.html("<img src='../img/globe.png' />");
-        pharmacyBtn.addClass("pharmacy btn btn-default");
-        pharmacyBtn.data("category", "Pharmacy")
+        var addButton = $("<a href='/add'><button class='add-btn'><img src='../img/plus-circle.png'/></button></a>");
+    
+        // var groceryBtn = $("<button>");
+        // groceryBtn.html("<img src='../img/star.png' />");
+        // groceryBtn.addClass("grocery btn btn-default");
+        // groceryBtn.data("category", "Groceries");
+        // var bankBtn = $("<button>");
+        // bankBtn.html("<img src='../img/box.png' />");
+        // bankBtn.addClass("bank btn btn-default");
+        // bankBtn.data("category", "Banking")
+        // var pharmacyBtn = $("<button>");
+        // pharmacyBtn.html("<img src='../img/globe.png' />");
+        // pharmacyBtn.addClass("pharmacy btn btn-default");
+        // pharmacyBtn.data("category", "Pharmacy")
 
         //Add more category buttons once we decide on categories
 
@@ -89,9 +90,9 @@ $(document).ready(function() {
         }
         toDoContainer.append(itemsToAdd);
         toDoContainer.append(addButton);
-        toDoContainer.append(groceryBtn);
-        toDoContainer.append(bankBtn);
-        toDoContainer.append(pharmacyBtn);
+        // toDoContainer.append(groceryBtn);
+        // toDoContainer.append(bankBtn);
+        // toDoContainer.append(pharmacyBtn);
         //We will need to append other category buttons once we decide on categories
         // userName.append("Hello" + user"!");
     }
@@ -155,7 +156,7 @@ $(document).ready(function() {
         }
         toDoContainer.append(itemsToAdd);
         toDoContainer.append(returnButton);
-        panelHeading.append(category)
+        panelHeading.append(category);
     }
 
     //This deletes an item when the delete button is pushed.
@@ -206,17 +207,20 @@ $(document).ready(function() {
 
         var task = item.task;
         var category = item.category;
-        var notes = item.body
-        var newItemDetailDiv = $("<div>")
+        var notes = item.body;
+        var newItemDetailDiv = $("<div>");
         var newItemDetail = $("<div class = 'container'><form id 'detailItem> <div class 'form-group><label for='title'>Task Name:</label><div id = 'taskName'> " + task + "</div> <br /> <label for = 'category'> Category:  </label> <div id = 'category'>" + category + "</div> <br /> <label for 'body'> Notes:  </label> <div id = 'notes'>" + notes + "</div>");
+        
         var deleteBtn = $("<button>");
-        deleteBtn.text("x");
+        deleteBtn.text("delete task");
         deleteBtn.data("id", item.id);
-        deleteBtn.addClass("delete btn btn-danger");
+        deleteBtn.addClass("delete btn btn-delete-ind");
+        
         var editBtn = $("<button>");
         editBtn.text("EDIT");
         editBtn.addClass("edit btn btn-default");
         editBtn.data("id", item.id);
+        
         newItemDetailDiv.append(newItemDetail);
         newItemDetailDiv.append(editBtn);
         newItemDetailDiv.append(deleteBtn);
@@ -330,5 +334,7 @@ $(document).ready(function() {
 //   if (unit=="N") { dist = dist * 0.8684 }
 //   return Math.floor(dist)
 // }
+
+
 
 });

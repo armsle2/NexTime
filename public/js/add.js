@@ -31,11 +31,11 @@ $(document).ready(function() {
     }
 
     function getCategories(){
-        $.get('/api/categories/', function(data){
+        $.get('/api/category/', function(data){
             console.log(data);
             let select = $('#category');
             let option = $(`<option value="">`);
-            select.append(option);
+            select.append($('<option>', {text: 'Select A Category'}));
             data.forEach((result, index)=>{
                 select.append($('<option>', {
                     value: result.id,
