@@ -1,5 +1,9 @@
 $(document).ready(function() {
     googleAPI();
+  getLocation();
+  // Getting the initial list of toDos
+    getItems();
+
 
     // Container holds all of our posts
     var toDoContainer = $(".list-group");
@@ -22,7 +26,7 @@ $(document).ready(function() {
     var items;
 
     // This function grabs items from the database and updates the view
-    function getItems(category) {
+    function getItems() {
 
         $.get("/api/todos/", function(data) {
             items = data;
@@ -52,9 +56,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    // Getting the initial list of toDos
-    getItems();
 
 
     // InitializeRows handles appending all of our constructed item HTML inside
@@ -234,7 +235,7 @@ function googleAPI(keyword, location, ){
   var apiKey = "AIzaSyDku5hGYht2Deh0IIUDx0TEwx7uZH7llks";
   var keyWord = "electronics_store";
 
-  var queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705,-84.312278&radius=8046&type=${keyWord}&key=${apiKey}`;
+  var queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705,-84.312278&radius=4828&type=${keyWord}&key=${apiKey}`;
     // console.log(queryURL);
 
    $.ajax({
@@ -245,13 +246,69 @@ function googleAPI(keyword, location, ){
         res.results.sort(function(a, b) {
               return b.rating - a.rating;
           });
-        console.log(res.results);
+        // console.log(res.results);
         res.results.forEach((result, index)=>{
           console.log(`${index+1}: \n Name: ${result.name}\n Address: ${result.vicinity} \n Rating: ${result.rating}`);
         })
 
     });
 };
+//calculate mileage difference
+  //if lat/long is more than a mile from previous lat/lon then run googleAPI function
+var locations = {};
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(showPosition);
+    } else { 
+        console.log('Geolocation is not supported by this browser.')
+    }
+}
+
+function showPosition(position) {
+    if(!locations.lat1 && !locations.lon1){
+      locations.lat1 = position.coords.latitude;
+      locations.lon1 = position.coords.longitude;
+    }else if(!locations.lat2 && !locations.lon2){
+      locations.lat2 = position.coords.latitude;
+      locations.lon2 = position.coords.longitude;
+    }else if(locations.lat2 && locations.lon2){
+      locations.lat1 = locations.lat2;
+      locations.lon1 = locations.lon2;
+        locations.lat2 = position.coords.latitude;
+      locations.lon2 = position.coords.longitude;   
+    }
+    console.log("Latitude 1: " + locations.lat1 + 
+    "\nLongitude 1: " + locations.lon1 + "\nLatitude 2: " + 
+    locations.lat2 + "\nLongitude 2: " + locations.lon2);
+    console.log(items);
+
+    var lat1 = locations.lat1;
+    var lon1 = locations.lon1;
+    var lat2 = locations.lat2;
+    var lon2 = locations.lon2;
+    
+    let positionDiff = distance(lat1, lon1, lat2, lon2)
+    if(positionDiff > 1){
+      googleAPI();
+    }
+    
+    
+}
+
+function distance(lat1, lon1, lat2, lon2, unit) {
+  var radlat1 = Math.PI * lat1/180
+  var radlat2 = Math.PI * lat2/180
+  var theta = lon1-lon2
+  var radtheta = Math.PI * theta/180
+  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist)
+  dist = dist * 180/Math.PI
+  dist = dist * 60 * 1.1515
+  if (unit=="K") { dist = dist * 1.609344 }
+  if (unit=="N") { dist = dist * 0.8684 }
+  return Math.floor(dist)
+}
 
 
 
