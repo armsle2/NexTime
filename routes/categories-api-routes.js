@@ -13,7 +13,7 @@ var db = require("../models");
 module.exports = function(app) {
 
   // GET route for getting all of the posts
-  app.get("/api/categories/", function(req, res) {
+  app.get("/api/category/", function(req, res) {
     db.Category.findAll()
     .then(function(dbCategories) {
       res.json(dbCategories);

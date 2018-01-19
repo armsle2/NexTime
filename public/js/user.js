@@ -139,7 +139,7 @@ $(document).ready(function() {
         deleteBtn.text("x");
         deleteBtn.data("id", item.id);
         deleteBtn.addClass("delete btn btn-danger");
-        var editBtn = $("<button>");
+        var editBtn = $("<a href = '/update'><button>");
         editBtn.text("EDIT");
         editBtn.addClass("edit btn btn-default");
         editBtn.data("id", item.id);
@@ -301,10 +301,10 @@ $(document).ready(function() {
         id = $(this).data("id");
         console.log("this" + id)
         $.get("/api/todos/" + id, function(data) {
-            console.log("Items", data);
+            //console.log("Items", data);
             items = data;
-            console.log(items);
-            initializeDetail();
+            console.log(id);
+            
 
 
         });
