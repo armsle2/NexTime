@@ -106,13 +106,20 @@ $(document).ready(function() {
         editBtn.html("<img src='../img/edit.png'/>");
         editBtn.addClass("edit btn btn-edit");
         editBtn.data("id", item.id);
+        var categoryIcon = $("<button>");
+        categoryIcon.addClass("icon");
+        categoryIcon.addClass(item.category);
+        categoryIcon.html("<img src='../img/"+item.category+".png'/>");
+        editBtn.html("<img src='../img/edit.png'/>");
         specificItem = $("<a class = specificItem></a>");
         specificItem.text(item.task);
         specificItem.data("id", item.id);
 
+        newItemList.append(categoryIcon);
         newItemList.append(specificItem);
         newItemList.append(deleteBtn);
         newItemList.append(editBtn);
+
 
         return newItemList;
     }

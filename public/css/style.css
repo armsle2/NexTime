@@ -49,8 +49,12 @@ h4 {
     left: 0;
     z-index: 100;
     padding: 50px;
-    background-color: #D0021B;
+    background-color: #18bc9c;
     border: #979797 1px solid;
+}
+
+.list-group-item:first-child {
+    border-radius: 10px;
 }
 
 .list-group-item {
@@ -129,6 +133,10 @@ form {
     position: relative;
 }
 
+.btn {
+    padding: 0;
+ }
+
 .btn-danger {
     position: absolute;
     right: 10px;
@@ -139,5 +147,10 @@ form {
     background-color: #95a5a6;
     border-color: #95a5a6;
     position: absolute;
-    right: 70px;
+    right: 40px;
+}
+
+.icon {
+    border: 0;
+    background-color: #ffffff;
 }
