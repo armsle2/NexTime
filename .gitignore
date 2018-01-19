@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+#UX/UI Files
+wireframes.sketch
+logo_progress.psd
+.DS_Store
+

@@ -3,5 +3,3 @@
 -- Creates the "todolist" database --
 CREATE DATABASE nexTime;
 USE nexTime;
-
-
