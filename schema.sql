@@ -2,6 +2,4 @@
 -- DROP DATABASE IF EXISTS Items;
 -- Creates the "todolist" database --
 CREATE DATABASE nexTime;
-USE DATABASE nexTime;
-
-
+USE nexTime;

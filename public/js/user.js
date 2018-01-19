@@ -66,17 +66,17 @@ $(document).ready(function() {
         //NOTE:  We will need to code this once we figure out how we are capturing the user info.
         //var user = 
         var itemsToAdd = [];
-        var addButton = $("<button><a href='/add'>Add an Item</a> </button>");
+        var addButton = $("<button id='add-btn'><a href='/add'><img src='../img/plus-circle.png'/></button>");
         var groceryBtn = $("<button>");
-        groceryBtn.text("grocery");
+        groceryBtn.html("<img src='../img/star.png' />");
         groceryBtn.addClass("grocery btn btn-default");
         groceryBtn.data("category", "Groceries")
         var bankBtn = $("<button>");
-        bankBtn.text("banking");
+        bankBtn.html("<img src='../img/box.png' />");
         bankBtn.addClass("bank btn btn-default");
         bankBtn.data("category", "Banking")
         var pharmacyBtn = $("<button>");
-        pharmacyBtn.text("pharmacy");
+        pharmacyBtn.html("<img src='../img/globe.png' />");
         pharmacyBtn.addClass("pharmacy btn btn-default");
         pharmacyBtn.data("category", "Pharmacy")
 
@@ -100,20 +100,27 @@ $(document).ready(function() {
         var newItemList = $("<li>");
         newItemList.addClass("list-group-item new-item");
         var deleteBtn = $("<button>");
-        deleteBtn.text("x");
+        deleteBtn.html("<img src='../img/trash-2.png'/>");
         deleteBtn.data("id", item.id);
         deleteBtn.addClass("delete btn btn-danger");
         var editBtn = $("<button>");
-        editBtn.text("EDIT");
-        editBtn.addClass("edit btn btn-default");
+        editBtn.html("<img src='../img/edit.png'/>");
+        editBtn.addClass("edit btn btn-edit");
         editBtn.data("id", item.id);
+        var categoryIcon = $("<button>");
+        categoryIcon.addClass("icon");
+        categoryIcon.addClass(item.category);
+        categoryIcon.html("<img src='../img/"+item.category+".png'/>");
+        editBtn.html("<img src='../img/edit.png'/>");
         specificItem = $("<a class = specificItem></a>");
         specificItem.text(item.task);
         specificItem.data("id", item.id);
 
+        newItemList.append(categoryIcon);
         newItemList.append(specificItem);
         newItemList.append(deleteBtn);
         newItemList.append(editBtn);
+
 
         return newItemList;
     }
@@ -309,9 +316,5 @@ $(document).ready(function() {
 //   if (unit=="N") { dist = dist * 0.8684 }
 //   return Math.floor(dist)
 // }
-
-
-
-
 
 });
