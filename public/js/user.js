@@ -178,6 +178,7 @@ $(document).ready(function() {
         event.stopPropagation();
         id = $(this).data("id");
         console.log("This" + id);
+        console.log(id);
         $.get("/api/todos/" + id, function(data) {
             console.log("Items", data);
             items = data;
@@ -199,18 +200,20 @@ $(document).ready(function() {
         toDoContainer.append(itemsToAdd);
         toDoContainer.append(addButton);
         panelHeading.append("Detail View:  Task # " + id);
+
     }
 
     //This adds the specific items to the detailed view.
 
     function createDetail(item) {
+        console.log("hello" + item);
 
         var task = item.task;
         var category = item.category;
         var notes = item.body;
         var newItemDetailDiv = $("<div>");
         var newItemDetail = $("<div class = 'container'><form id 'detailItem> <div class 'form-group><label for='title'>Task Name:</label><div id = 'taskName'> " + task + "</div> <br /> <label for = 'category'> Category:  </label> <div id = 'category'>" + category + "</div> <br /> <label for 'body'> Notes:  </label> <div id = 'notes'>" + notes + "</div>");
-        
+        console.log(task)
         var deleteBtn = $("<button>");
         deleteBtn.text("delete task");
         deleteBtn.data("id", item.id);
