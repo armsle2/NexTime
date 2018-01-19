@@ -21,6 +21,7 @@ $(document).ready(function() {
     $(document).on("click", "button.grocery", getCategory);
     $(document).on("click", "button.bank", getCategory);
     $(document).on("click", "button.pharmacy", getCategory);
+    $(document).on("click", "button.icon", getCategory);
 
 
     var items;
@@ -44,6 +45,7 @@ $(document).ready(function() {
     function getCategory(event) {
         event.stopPropagation();
         category = $(this).data("category");
+        console.log(this);
         console.log("This " + category);
         $.get("/api/todos/category/" + category, function(data) {
             console.log("Items", data);
@@ -70,7 +72,7 @@ $(document).ready(function() {
         var groceryBtn = $("<button>");
         groceryBtn.html("<img src='../img/star.png' />");
         groceryBtn.addClass("grocery btn btn-default");
-        groceryBtn.data("category", "Groceries")
+        groceryBtn.data("category", "Groceries");
         var bankBtn = $("<button>");
         bankBtn.html("<img src='../img/box.png' />");
         bankBtn.addClass("bank btn btn-default");
@@ -99,19 +101,29 @@ $(document).ready(function() {
     function createNewRow(item) {
         var newItemList = $("<li>");
         newItemList.addClass("list-group-item new-item");
+
         var deleteBtn = $("<button>");
         deleteBtn.html("<img src='../img/trash-2.png'/>");
         deleteBtn.data("id", item.id);
         deleteBtn.addClass("delete btn btn-danger");
+        
         var editBtn = $("<button>");
         editBtn.html("<img src='../img/edit.png'/>");
         editBtn.addClass("edit btn btn-edit");
         editBtn.data("id", item.id);
+        
+        var checkBtn = $("<button>");
+        checkBtn.html("<img src='../img/check-square.png'/>");
+        checkBtn.addClass("edit btn btn-check");
+        checkBtn.data("id", item.id);
+        
         var categoryIcon = $("<button>");
         categoryIcon.addClass("icon");
-        categoryIcon.addClass(item.category);
-        categoryIcon.html("<img src='../img/"+item.category+".png'/>");
-        editBtn.html("<img src='../img/edit.png'/>");
+        categoryIcon.addClass(item.Category.type_name);
+        categoryIcon.html("<img src='../img/"+item.Category.type_name+".png'/>");
+        categoryIcon.data("category", item.Category.type_name);
+
+        
         specificItem = $("<a class = specificItem></a>");
         specificItem.text(item.task);
         specificItem.data("id", item.id);
@@ -120,6 +132,7 @@ $(document).ready(function() {
         newItemList.append(specificItem);
         newItemList.append(deleteBtn);
         newItemList.append(editBtn);
+        newItemList.append(checkBtn);
 
 
         return newItemList;

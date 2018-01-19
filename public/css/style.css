@@ -138,19 +138,36 @@ form {
  }
 
 .btn-danger {
-    position: absolute;
-    right: 10px;
+/*    position: absolute;
+    right: 10px;*/
+    float: right;
+    padding: 2px;
+    margin: 0 5px;
 }
 
 .btn-edit {
     color: #ffffff;
     background-color: #95a5a6;
     border-color: #95a5a6;
-    position: absolute;
-    right: 40px;
+/*    position: absolute;
+    right: 40px;*/
+    float: right;
+    padding: 2px;
+    margin: 0 5px;
+}
+
+.btn-check{
+    float: right;
+    padding: 2px;
+    margin: 0 5px;
 }
 
 .icon {
     border: 0;
     background-color: #ffffff;
+    float: left;
+}
+
+.list-group {
+    margin-bottom: 100px;
 }
