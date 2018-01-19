@@ -14,7 +14,9 @@ module.exports = function(app) {
 
   // GET route for getting all of the posts
   app.get("/api/todos/", function(req, res) {
-    db.Item.findAll()
+    db.Item.findAll({
+      include: [db.Category]
+    })
     .then(function(dbItem) {
       res.json(dbItem);
     });

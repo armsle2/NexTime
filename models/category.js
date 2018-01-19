@@ -6,6 +6,10 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           len: [1]
         },
+      },
+      type_name: {
+        type: DataTypes.STRING,
+        allowNull: false
       }
     }, {
       timestamps: false
