@@ -47,7 +47,7 @@ $(document).ready(function() {
         categoryID = $(this).data("category_id");
         console.log(this);
         console.log("This " + categoryID);
-        $.get(`/api/todos/${categoryID}/`, function(data) {
+        $.get(`/api/todos/category/${categoryID}/`, function(data) {
             console.log("Items", data);
             items = data;
             console.log(items);
