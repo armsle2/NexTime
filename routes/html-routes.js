@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+var db = require('../models');
 
 // Routes
 // =============================================================
@@ -14,16 +15,18 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+      db.Item.findAll().then(function(tasks){
+        res.render('index', {tasks});
+      })
   });
 
   // Route to the to do list / user page
   app.get("/to-do", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/user.html"));
+
   });
 
 app.get("/add", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/add.html"));
+
   });
 
 
