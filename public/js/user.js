@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    googleAPI();
+    //googleAPI();
 
     // Container holds all of our posts
     var toDoContainer = $(".list-group");
@@ -9,17 +9,54 @@ $(document).ready(function() {
     var id;
 
 
+
     // Click events for the edit and delete buttons and specific items
     $(document).on("click", "button.delete", deleteItem);
     //Note:  Need to include the edit functionality.
-    //$(document).on("click", "button.edit", handleItemEdit);
+    $(document).on("click", "button.edit", startItemUpdate);
     $(document).on("click", "a.specificItem", getSpecific);
     $(document).on("click", "button.grocery", getCategory);
     $(document).on("click", "button.bank", getCategory);
     $(document).on("click", "button.pharmacy", getCategory);
-
+    $(document).on("click", ".todo-item", editToDo);
+    $(document).on("keyup", ".todo-item", finishEdit);
+   // $(document).on("keyup", ".todo-item2", finishEdit2);
+    //$(document).on("keyup", ".todo-item3", finishEdit3);
+    //     $(document).on("blur", ".todo-item", cancelEdit);
 
     var items;
+
+    //THE CODE BELOW WIll RELATE TO SEARCHING ITEMS BY USER
+    var url = window.location.search;
+    var userId;
+    if (url.indexOf("?user_id=") !== -1) {
+        userId = url.split("=")[1];
+        getItems(userId);
+    }
+    // If there's no userId we just get all items
+    else {
+        getItems();
+
+    }
+
+
+    // This function grabs posts from the database and updates the view
+    function getItems(user) {
+        //     userId = user || "";
+        //   if (userId) {
+        //     userId = "/?user_id=" + userId;
+        //}
+        //$.get("/api/todos/" + userId, function(data) {
+        $.get("api/todos/", function(data) {
+            console.log("Items", data);
+            items = data;
+            if (!items || !items.length) {
+                displayEmpty(user);
+            } else {
+                initializeRows();
+            }
+        });
+    }
 
     // This function grabs items from the database and updates the view
     function getItems(category) {
@@ -54,7 +91,7 @@ $(document).ready(function() {
     }
 
     // Getting the initial list of toDos
-    getItems();
+    // getItems();
 
 
     // InitializeRows handles appending all of our constructed item HTML inside
@@ -106,9 +143,10 @@ $(document).ready(function() {
         editBtn.text("EDIT");
         editBtn.addClass("edit btn btn-default");
         editBtn.data("id", item.id);
-        specificItem = $("<a class = specificItem></a>");
+        var specificItem = $("<a class = specificItem></a>");
         specificItem.text(item.task);
         specificItem.data("id", item.id);
+        console.log(item);
 
         newItemList.append(specificItem);
         newItemList.append(deleteBtn);
@@ -117,8 +155,8 @@ $(document).ready(function() {
         return newItemList;
     }
 
-  // InitializeRows handles appending all of our constructed item HTML inside
-  // toDoContainer
+    // InitializeRows handles appending all of our constructed item HTML inside
+    // toDoContainer
     // InitializeRowsCatgory handles appending all of our constructed item HTML of a specific category inside
     // toDoContainer for the filtered list.  It also runs create new row function, but only for rows in the specific category.
     //it is triggered by the getCategory function.
@@ -147,10 +185,12 @@ $(document).ready(function() {
             method: "DELETE",
             url: "/api/todos/" + id
         }).then(getItems);
+
+
+
     }
 
     //This gets a specific item from the server and initiates the function that builds the detailed view.
-
     function getSpecific(event) {
         event.stopPropagation();
         id = $(this).data("id");
@@ -171,33 +211,60 @@ $(document).ready(function() {
         toDoContainer.empty();
         panelHeading.empty();
         var itemsToAdd = [];
-        var addButton = $("<button><a href='/to-do'>Return to List</a> </button>");
+        var returnButton = $("<button><a href='/to-do'>Return to List</a> </button>");
         itemsToAdd.push(createDetail(items));
         toDoContainer.append(itemsToAdd);
-        toDoContainer.append(addButton);
         panelHeading.append("Detail View:  Task # " + id);
+        panelHeading.append(returnButton);
     }
 
     //This adds the specific items to the detailed view.
+    // var toDoItem;
 
     function createDetail(item) {
+        console.log(item);
 
-        var task = item.title;
-        var category = item.category;
-        var notes = item.body
-        var newItemDetailDiv = $("<div>")
-        var newItemDetail = $("<div class = 'container'><form id 'detailItem> <div class 'form-group><label for='title'>Task Name:</label><div id = 'taskName'> " + task + "</div> <br /> <label for = 'category'> Category:  </label> <div id = 'category'>" + category + "</div> <br /> <label for 'body'> Notes:  </label> <div id = 'notes'>" + notes + "</div>");
+        var newItemDetailDiv = $("<div>");
+
+        var newItemDetail = $(
+            ["<label for='task'>Task Name:</label>",
+                "<li class='list-group-item todo-item'>",
+                "<span>",
+                item.task,
+                "</span>",
+                "<input type='text' class='edit' style='display: none;'>",
+                "</li>",
+                "<label for='category'>Category:</label>",
+                "<li class = 'list-group-item todo-item'>",
+                "<span>",
+                item.category,
+                "</span>",
+                "<input type = 'text' class = 'edit' style = 'display: none;'>",
+                "</li>",
+                "<label for='body'>Notes:</label>",
+                "<li class = 'list-group-item todo-item'>",
+                "<span>",
+                item.body,
+                "</span>",
+                "<input type = 'text' class = 'edit' style = 'display: none;'>",
+                "</li>"
+
+            ].join("")
+        );
+
+        newItemDetail.data("item", item);
         var deleteBtn = $("<button>");
         deleteBtn.text("x");
         deleteBtn.data("id", item.id);
         deleteBtn.addClass("delete btn btn-danger");
-        var editBtn = $("<button>");
-        editBtn.text("EDIT");
-        editBtn.addClass("edit btn btn-default");
+        var editBtn = $("<button class = 'edit btn btn-default' id = 'editBtn'>Edit</button>");
         editBtn.data("id", item.id);
+
+
         newItemDetailDiv.append(newItemDetail);
-        newItemDetailDiv.append(editBtn);
         newItemDetailDiv.append(deleteBtn);
+        newItemDetailDiv.append(editBtn);
+
 
         return newItemDetailDiv;
     }
@@ -206,7 +273,6 @@ $(document).ready(function() {
     function displayEmpty(id) {
         var query = window.location.search;
         var partial = "";
-
         toDoContainer.empty();
         var messageh2 = $("<h2>");
         messageh2.css({ "text-align": "center", "margin-top": "50px" });
@@ -228,22 +294,74 @@ $(document).ready(function() {
         toDoContainer.append(messageh2);
     }
 
-    
-function googleAPI(){
+    //This series of functions takes care of the update process
 
-  var apiKey = "AIzaSyDku5hGYht2Deh0IIUDx0TEwx7uZH7llks";
-  var keyWord = "grocery_or_supermarket";
 
-  var queryURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.673705%2C-84.312278&radius=50000&type=${keyWord}&key=${apiKey}`;
-    // console.log(queryURL);
+    function startItemUpdate(event) {
+        id = $(this).data("id");
+        console.log("this" + id)
+        $.get("/api/todos/" + id, function(data) {
+            console.log("Items", data);
+            items = data;
+            console.log(items);
+            initializeDetail();
 
-   $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).done(function(response){
-        console.log(response);
-    });
-};
+
+        });
+
+    }
+
+    function editToDo() {
+
+        var currentItem = $(this).data("item");
+        console.log(this);
+        console.log(currentItem);
+        $(this).children().hide();
+        $(this).children("input.edit").val(currentItem.task);
+        $(this).children("input.edit").val(currentItem.body);
+        $(this).children("input.edit").val(currentItem.category);
+        $(this).children("input.edit").val("");
+        $(this).children("input.edit").show();
+        $(this).children("input.edit").focus();
+    }
+
+    //var updatedItem;
+
+
+
+function finishEdit() {
+        var updatedItem = $(this).data("item");
+        console.log("this" + this);
+        console.log("UP" + updatedItem);
+        console.log("task" + updatedItem.task);
+        console.log("body" + updatedItem.body);
+        console.log("category" + updatedItem.category);
+
+
+
+
+
+    //    $("#editBtn").on("click", function(event) {
+
+           if (event.which === 13) {
+            updatedItem.task = $(this).children("input").val().trim();
+            updatedItem.body = $(this).children("input").val().trim();
+            updatedItem.category = $(this).children("input").val().trim();
+            $(this).blur();
+            updateItem(updatedItem);
+        }
+    };
+
+
+    function updateItem(item) {
+
+        $.ajax({
+            method: "PUT",
+            url: "/api/todos/" + id,
+            data: item
+        }).then(getItems);
+    }
+
 
 
 
