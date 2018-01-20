@@ -210,7 +210,7 @@ form {
 .category-item{
     clear: both;
     height: 100px;
-    margin: 30px 0;
+    margin: 0 0 30px 0;
     background-color: #ffffff;
     -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
@@ -257,10 +257,24 @@ h4 {
     bottom: 0;
     left: 0;
     z-index: 100;
-    padding: 10px;
+    padding: 30px;
     background-color: #18bc9c;
     border: #979797 1px solid;
     text-align: center;
+    -webkit-transition:.25s ease-in-out;
+    -moz-transition:.25s ease-in-out;
+    -o-transition:.25s ease-in-out;
+    transition:.25s ease-in-out;
+}
+
+.add-btn:hover {
+    background-color: #C2C2C2;
+    /*transition*/
+    -webkit-transition:.25s ease-in-out;
+    -moz-transition:.25s ease-in-out;
+    -o-transition:.25s ease-in-out;
+    transition:.25s ease-in-out;
+    cursor: pointer;
 }
 
 .category-header {
@@ -272,17 +286,34 @@ h4 {
 }
 
 .category-body {
-    padding: 0 5%;
+    padding: 3% 10%;
 }
 
 li.list-item {
-    padding: 5px;
+    padding: 5px 0;
 }
 
-ul.list-item {
-list-style-image: url("../img/circle.png");
+li.list-item:before {
+   content: '';
+   display: inline-block;
+   height: 20px;
+   width: 20px;
+   background-image: url("../img/circle.png");
+   background-size: cover;
 }
 
+li.list-item.checked:before {
+    background-image: url("../img/check-circle.png");
+    text-decoration: line-through;
+}
+
+.invisible-delete {
+    opacity: 0;
+}
+
+.invisible-delete {
+    opacity:1;
+}
 
 
 
