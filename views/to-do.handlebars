@@ -4,17 +4,17 @@
             <h1>NexTime</h1>
             <h3>Welcome <span id="user-name">UserName</span></h3>
         </div>
-        {{#each categories}}
+            {{#each categories}}
         <a href="/to-do/category-items/{{this.id}}">
-        <div class="category-body">
-            <div class="category-item">
-                <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.png">
+            <div class="category-body">
+                <div class="category-item">
+                    <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.png">
+                    </div>
+                    <div class="category-title"><h4>{{this.type}}</h4></div>
                 </div>
-                <div class="category-title"><h4>{{this.type}}</h4></div>
             </div>
-        </div>
         </a>
-        {{/each}}
+            {{/each}}
     </div>
     <div class="list-items-div">
         <div class="category-header">
@@ -24,11 +24,12 @@
         <div class="category-body">
             <ul>
                 {{#each tasks}}
+
                 <li class="list-item {{this.id}}">{{this.task}}<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myEditModal">edit</button><button class="btn btn-primary btn-sm item-delete" data-id="{{this.id}}">x</button></li>
 
                 {{/each}}
             </ul>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><div class="add-btn"><img src="/../img/plus-circle.png"></div></button>
+        <button type="button" class="add-btn"data-toggle="modal" data-target="#myModal"><div><img src="/../img/plus-circle.png"></div></button>
     </div>
 
 
@@ -83,6 +84,7 @@
                     <div class="form-group">
                         <label for="category">Select Category:</label>
                         <select class="form-control" id="category">
+                            <option></option>
                         </select>
                     </div>
                     <br />
@@ -98,5 +100,4 @@
     </div>
   </div>
 </div>
-
 </div>

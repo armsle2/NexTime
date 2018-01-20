@@ -21,8 +21,11 @@ module.exports = function(app) {
   });
 
   // Route to the to do list / user page
-  app.get("/to-do", function(req, res) {
+  app.get("/user/:id/to-do", function(req, res) {
     db.Item.findAll({
+      where: {
+        UserId: req.params.id
+      },
       include: [db.Category]
     }).then(function(tasks){
       let currentCategories = [];
@@ -81,9 +84,13 @@ module.exports = function(app) {
 
   });
 
-app.get("/add", function(req, res) {
+  app.get("/sign-in", function(req, res) {
+    res.render('sign-in');
+    });
 
-  });
+  // app.get("/sign-in", function(req, res) {
+  //   res.render('sign-in');
+  //   });
 
 
 };

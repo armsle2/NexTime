@@ -14,6 +14,9 @@ h1 {
 h2 {
     color: #000000;
 }
+button {
+    outline: none;
+}
 
 .current-tasks {
     background-color: #F8D300;
@@ -76,12 +79,12 @@ a {
     margin-top: 0;
 }
 
-/* form {
+ form#sign-in-form {
     padding: 4% 5%;
     background-color: rgba(114, 114, 114, 0.11);
     width: 60%;
     margin: 0 auto;
-} */
+} 
 
 .boxindex{
     border: 0;
@@ -192,6 +195,10 @@ a {
     -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
 
+}
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0);
 }
 
 .list-items-div{

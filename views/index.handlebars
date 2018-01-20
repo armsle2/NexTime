@@ -6,13 +6,7 @@
                 <h3>The greatest app ever!</h3>
             </div>
             <div class = "userContainer">
-                <button type="submit" class="btn btn-success"><a href="/to-do">Go to To-Do List</a></button>  
-                <ul>
-                    {{#each tasks}}
-                    {{math @index '+' 1}}
-                    <li>{{this.task}}</li>
-                    {{/each}}
-                </ul>
+                <a href="/sign-in"><button type="submit" class="btn btn-success">Sign In</button></a>
             </div>
         </div>
     </div>
