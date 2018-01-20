@@ -22,6 +22,29 @@ module.exports = function(app) {
 
   // Route to the to do list / user page
   app.get("/to-do", function(req, res) {
+    db.Item.findAll({
+      include: [db.Category]
+    }).then(function(tasks){
+      let currentCategories = [];
+      //running loop based on user's tasks
+      tasks.forEach((results, index)=>{
+        let categoryID = results.Category.id;
+        function checkTypeArray(type){
+          return type.id != categoryID;
+        }
+        //pushing the category type_name of users tasks to array only ONCE
+        // console.log(currentCategories.every(checkTypeArray))
+        if(currentCategories.every(checkTypeArray)){
+          currentCategories.push(results.Category);
+        }
+      });
+      console.log(currentCategories);
+      let userItemInfo = {
+        tasks: tasks,
+        categories: currentCategories
+      }
+      res.render('to-do', userItemInfo)
+    })
 
   });
 

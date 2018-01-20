@@ -10,6 +10,7 @@
                 <button type="submit" class="btn btn-success"><a href="/to-do">Go to To-Do List</a></button>  
                 <ul>
                     {{#each tasks}}
+                    {{math @index '+' 1}}
                     <li>{{this.task}}</li>
                     {{/each}}
                 </ul>
