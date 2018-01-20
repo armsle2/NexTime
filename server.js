@@ -18,7 +18,28 @@ var db = require("./models");
 //requiring the handlebars dependency
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+//creates extra helper functions and houses the default layout setting
+var hbs = exphbs.create({
+    // Specify helpers which are only registered on this instance. 
+    helpers: {
+        math: function(lvalue, operator, rvalue, options) {
+				    lvalue = parseFloat(lvalue);
+				    rvalue = parseFloat(rvalue);
+				        
+				    return {
+				        "+": lvalue + rvalue,
+				        "-": lvalue - rvalue,
+				        "*": lvalue * rvalue,
+				        "/": lvalue / rvalue,
+				        "%": lvalue % rvalue
+				    }[operator];
+				}
+    },
+    defaultLayout: "main"
+});
+
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // Sets up the Express app to handle data parsing
