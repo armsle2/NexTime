@@ -1,27 +1,34 @@
 <div class="container-fluid">
     <div class="category-div">
-        <div class="header">
+        <div class="category-header">
             <h1>NexTime</h1>
-            <h3>The greatest app ever!</h3>
+            <h3>Welcome <span id="user-name">UserName</span></h3>
         </div>
-        {{#each categories}}
-        <div class="category-item">
-            
+
+        <div class="category-body">
+            {{#each categories}}
+            <div class="category-item">
+                
                 <div class="category-icon {{this.type_name}}"><img src="../img/{{this.type_name}}.png"><!-- category icon, in img folder-->
                 </div>
-                <div class="category-title"><h3>{{this.type}}</h3></div>
+                <div class="category-title"><h4>{{this.type}}</h4></div>
                 {{!-- <div class="category-task-number"><!-- this was on the UI, optional--></div> --}}
-
-            
+                
+            </div>
+            {{/each}}
         </div>
-        {{/each}}
     </div>
     <div class="list-items-div">
-        <h1>ALL of the tasks</h1>
-        <ul>
-            {{#each tasks}}
-            <li class="list-item">{{this.task}}</li>
-            {{/each}}
-        </ul>
-        <div class="add-btn"><img src="../img/plus-circle.png"></div>
+        <div class="category-header">
+            <h1>All of the tasks</h1>
+        </div>
+        
+        <div class="category-body">
+            <ul>
+                {{#each tasks}}
+                <li class="list-item">{{this.task}}</li>
+                {{/each}}
+            </ul>
+            <div class="add-btn"><img src="../img/plus-circle.png"></div>
+        </div>
     </div>
