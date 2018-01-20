@@ -79,12 +79,12 @@ a {
     margin-top: 0;
 }
 
-/* form {
+ form#sign-in-form {
     padding: 4% 5%;
     background-color: rgba(114, 114, 114, 0.11);
     width: 60%;
     margin: 0 auto;
-} */
+} 
 
 .boxindex{
     border: 0;
