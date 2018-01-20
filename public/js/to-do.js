@@ -1,5 +1,5 @@
 $(function() {
-	var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+  var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
   $(document).on('click', '.item-delete', function(){
         var id = $(this).data("id");
