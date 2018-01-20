@@ -22,7 +22,7 @@ module.exports = function(app) {
       where: {
         UserId: req.params.id
       },
-      include: [db.Category]
+      include: [db.Category, db.User]
     }).then(function(tasks){
       db.Category.findAll().then(function(allCategories){
 
@@ -43,9 +43,12 @@ module.exports = function(app) {
           tasks: tasks,
           categories: currentCategories,
           currentStatus: `Your List`,
+          userName: tasks[0].User.firstName,
+          userID: tasks[0].UserId,
           allCategories: allCategories
         }
         res.render('to-do', userInfo)
+        // res.json(userInfo)
 
       })
       
