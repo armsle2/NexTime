@@ -24,10 +24,79 @@
         <div class="category-body">
             <ul>
                 {{#each tasks}}
-                <li class="list-item {{this.id}}">{{this.task}}<a href=""><button>edit</button></a><button class="item-delete" data-id="{{this.id}}">x</button></li>
+                <li class="list-item {{this.id}}">{{this.task}}<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myEditModal">edit</button><button class="btn btn-primary btn-sm item-delete" data-id="{{this.id}}">x</button></li>
 
                 {{/each}}
             </ul>
-            <div class="add-btn"><img src="/../img/plus-circle.png"></div>
-        </div>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><div class="add-btn"><img src="/../img/plus-circle.png"></div></button>
     </div>
+
+
+
+<!-- New Task Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add New Task</h4>
+      </div>
+      <div class="modal-body">
+            <form id="addItem">
+                <div class="form-group">
+                    <label for="task">Task Name:</label>
+                    <input type="text" class="form-control" id="task">
+                    <br />
+                    <div class="form-group">
+                        <label for="category">Select Category:</label>
+                        <select class="form-control" id="category">
+                        </select>
+                    </div>
+                    <br />
+                    <label for="body">Notes</label>
+                    <textarea class="form-control" rows="10" id="body"></textarea>
+                    <br />
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "add-item" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update/Edit Modal -->
+<div class="modal fade" id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Update Current Task</h4>
+      </div>
+      <div class="modal-body">
+            <form id="addItem">
+                <div class="form-group">
+                    <label for="task">Task Name:</label>
+                    <input type="text" class="form-control" id="task">
+                    <br />
+                    <div class="form-group">
+                        <label for="category">Select Category:</label>
+                        <select class="form-control" id="category">
+                        </select>
+                    </div>
+                    <br />
+                    <label for="body">Notes</label>
+                    <textarea class="form-control" rows="10" id="body"></textarea>
+                    <br />
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "add-item" data-dismiss="modal">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
