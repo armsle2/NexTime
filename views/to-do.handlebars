@@ -1,31 +1,32 @@
-<div class="container landing">
-    
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="row">
-                <h1>NexTime</h1>
-                <h3>The greatest app ever!</h3>
-            </div>
-            <div class="container-fluid">
-                <div class="category-div">
-                        {{#each categories}}
-                    <div class="category-item">
-                        <div class="category-icon {{this.type_name}}"><img src="../img/{{this.type_name}}.png"><!-- category icon, in img folder-->
-                        </div>
-                        <div class="category-title"><h3>{{this.type}}</h3></div>
-                        {{!-- <div class="category-task-number"><!-- this was on the UI, optional--></div> --}}
-                    </div>
-                        {{/each}}
+<div class="container-fluid">
+    <div class="category-div">
+        <div class="category-header">
+            <h1>NexTime</h1>
+            <h3>Welcome <span id="user-name">UserName</span></h3>
+        </div>
+        {{#each categories}}
+        <a href="/to-do/category-items/{{this.id}}">
+        <div class="category-body">
+            <div class="category-item">
+                <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.png">
                 </div>
-                <div class="list-items-div">
-                    <h1>ALL of the tasks</h1>
-                    <ul>
-                        {{#each tasks}}
-                        <li class="list-item">{{this.task}}</li>
-                        {{/each}}
-                    </ul>
-                    <div class="add-btn"><img src="../img/plus-circle.png"></div>
-                </div>
+                <div class="category-title"><h4>{{this.type}}</h4></div>
             </div>
+        </div>
+        </a>
+        {{/each}}
+    </div>
+    <div class="list-items-div">
+        <div class="category-header">
+            <h1>{{currentStatus}}</h1>
+            <a href="/to-do"><button>View All Items</button></a>
+        </div>
+        <div class="category-body">
+            <ul>
+                {{#each tasks}}
+                <li class="list-item">{{this.task}}</li>
+                {{/each}}
+            </ul>
+            <div class="add-btn"><img src="/../img/plus-circle.png"></div>
         </div>
     </div>
