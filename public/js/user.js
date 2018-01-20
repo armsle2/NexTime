@@ -23,6 +23,10 @@ $(document).ready(function() {
     $(document).on("click", "button.pharmacy", getCategory);
     $(document).on("click", "button.icon", getCategory);
 
+    //NEW CLICK EVENTS
+    $(document).on("click", "li.list-item", function(){
+       $(this).toggleClass("checked");
+    });
 
     var items;
 
