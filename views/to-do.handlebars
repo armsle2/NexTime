@@ -24,7 +24,8 @@
         <div class="category-body">
             <ul>
                 {{#each tasks}}
-                <li class="list-item">{{this.task}}</li>
+                <li class="list-item {{this.id}}">{{this.task}}<a href=""><button>edit</button></a><button class="item-delete" data-id="{{this.id}}">x</button></li>
+
                 {{/each}}
             </ul>
             <div class="add-btn"><img src="/../img/plus-circle.png"></div>
