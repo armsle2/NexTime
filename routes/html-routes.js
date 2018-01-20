@@ -25,6 +25,7 @@ module.exports = function(app) {
       include: [db.Category]
     }).then(function(tasks){
       db.Category.findAll().then(function(allCategories){
+
         let currentCategories = [];
         //running loop based on user's tasks
         tasks.forEach((results, index)=>{
@@ -38,12 +39,13 @@ module.exports = function(app) {
             currentCategories.push(results.Category);
           }
         });
-        let userItemInfo = {
+        let userInfo = {
           tasks: tasks,
           categories: currentCategories,
-          currentStatus: `Your List`
+          currentStatus: `Your List`,
+          allCategories: allCategories
         }
-        res.render('to-do', userItemInfo)
+        res.render('to-do', userInfo)
 
       })
       

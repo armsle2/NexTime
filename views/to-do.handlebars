@@ -51,6 +51,10 @@
                     <div class="form-group">
                         <label for="category">Select Category:</label>
                         <select class="form-control" id="category">
+                            <option value="">Choose A Category</option>
+                            {{#each allCategories}}
+                            <option value="{{this.type_name}}" data-id="{{this.id}}">{{this.type}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <br />
@@ -84,7 +88,10 @@
                     <div class="form-group">
                         <label for="category">Select Category:</label>
                         <select class="form-control" id="category">
-                            <option></option>
+                            <option value="">Choose A Category</option>
+                            {{#each allCategories}}
+                            <option value="{{this.type_name}}" data-id="{{this.id}}">{{this.type}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <br />
