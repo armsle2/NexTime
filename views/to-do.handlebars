@@ -24,7 +24,7 @@
         <div class="category-body">
             <ul>
                 {{#each tasks}}
-                <li class="list-item {{this.id}}">{{this.task}}<a href=""><button>edit</button></a><button class="item-delete" data-id="{{this.id}}">x</button></li>
+                <li class="list-item {{this.id}}">{{this.task}}<a href=""><button class="invisible-edit-delete">edit</button></a><button class="item-delete invisible-edit-delete" data-id="{{this.id}}">x</button></li>
 
                 {{/each}}
             </ul>

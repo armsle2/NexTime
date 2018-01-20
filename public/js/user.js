@@ -28,6 +28,11 @@ $(document).ready(function() {
        $(this).toggleClass("checked");
     });
 
+    $(document).on("mouseenter","li.list-item", function(){
+        $(this).css("background-color", "yellow");
+        console.log("hovering");
+    });
+
     var items;
 
     // This function grabs items from the database and updates the view
