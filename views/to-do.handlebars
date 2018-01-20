@@ -25,7 +25,7 @@
             <ul>
                 {{#each tasks}}
 
-                <li class="list-item {{this.id}}">{{this.task}}<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myEditModal">edit</button><button class="btn btn-primary btn-sm item-delete" data-id="{{this.id}}">x</button></li>
+                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">{{this.task}}<button type="button" class="btn btn-primary btn-sm" id="edit-button" data-toggle="modal" data-target="#myEditModal">edit</button><button class="btn btn-primary btn-sm item-delete" data-id="{{this.id}}">x</button></li>
 
                 {{/each}}
             </ul>
@@ -84,11 +84,11 @@
             <form id="addItem">
                 <div class="form-group">
                     <label for="task">Task Name:</label>
-                    <input type="text" class="form-control" id="task">
+                    <input type="text" class="form-control" id="task-edit">
                     <br />
                     <div class="form-group">
                         <label for="category">Select Category:</label>
-                        <select class="form-control" id="category">
+                        <select class="form-control" id="category-edit">
                             <option value="">Choose A Category</option>
                             {{#each allCategories}}
                             <option value="{{this.id}}">{{this.type}}</option>
@@ -97,13 +97,13 @@
                     </div>
                     <br />
                     <label for="body">Notes</label>
-                    <textarea class="form-control" rows="10" id="body"></textarea>
+                    <textarea class="form-control" rows="10" id="body-edit"></textarea>
                     <br />
                 </div>
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "add-item" data-dismiss="modal">Update</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "edit-item" data-dismiss="">Update</button>
       </div>
     </div>
   </div>
