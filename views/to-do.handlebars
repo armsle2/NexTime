@@ -5,23 +5,25 @@
             <h3>The greatest app ever!</h3>
         </div>
         {{#each categories}}
+        <a href="/to-do/category-items/{{this.id}}">
         <div class="category-item">
             
-                <div class="category-icon {{this.type_name}}"><img src="../img/{{this.type_name}}.png"><!-- category icon, in img folder-->
+                <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.png"><!-- category icon, in img folder-->
                 </div>
                 <div class="category-title"><h3>{{this.type}}</h3></div>
                 {{!-- <div class="category-task-number"><!-- this was on the UI, optional--></div> --}}
 
             
         </div>
+        </a>
         {{/each}}
     </div>
     <div class="list-items-div">
-        <h1>ALL of the tasks</h1>
+        <h1>{{currentStatus}}</h1>
         <ul>
             {{#each tasks}}
             <li class="list-item">{{this.task}}</li>
             {{/each}}
         </ul>
-        <div class="add-btn"><img src="../img/plus-circle.png"></div>
+        <div class="add-btn"><img src="/../img/plus-circle.png"></div>
     </div>

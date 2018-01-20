@@ -41,7 +41,40 @@ module.exports = function(app) {
       console.log(currentCategories);
       let userItemInfo = {
         tasks: tasks,
-        categories: currentCategories
+        categories: currentCategories,
+        currentStatus: `Your List`
+      }
+      res.render('to-do', userItemInfo)
+    })
+
+  });
+
+  app.get("/to-do/category-items/:id", function(req, res) {
+    db.Item.findAll({
+      include: [db.Category]
+    }).then(function(tasks){
+      let currentCategories = [];
+      let currentCategoryItems = [];
+      //running loop based on user's tasks
+      tasks.forEach((results, index)=>{
+        let categoryID = results.Category.id;
+        function checkTypeArray(type){
+          return type.id != categoryID;
+        }
+        //pushing the category type_name of users tasks to array only ONCE
+        // console.log(currentCategories.every(checkTypeArray))
+        if(currentCategories.every(checkTypeArray)){
+          currentCategories.push(results.Category);
+        }
+        if(results.CategoryId == req.params.id){
+          currentCategoryItems.push(results);
+        }
+      });
+      console.log(currentCategories);
+      let userItemInfo = {
+        tasks: currentCategoryItems,
+        categories: currentCategories,
+        currentStatus: `Your ${currentCategoryItems[0].category} List`
       }
       res.render('to-do', userItemInfo)
     })
