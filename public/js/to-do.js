@@ -106,6 +106,7 @@ $(function() {
 	    let userID = $('#addItem');
   		addTask.val(data.task);
         addBody.val(data.body);
+        console.log(data);
         category.val(`${data.Category.id}`);
         $('#edit-item').on('click', function(){
         	let editedItem = {
