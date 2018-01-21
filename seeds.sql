@@ -1,5 +1,8 @@
 INSERT INTO Users(firstName, lastName, username, password)
-VALUES ('Bob', 'James', 'Bobby-J', 'password');
+VALUES ('Bob', 'James', 'bobby-j', 'password'),
+('cam', 'newton', 'cameraman', ''),
+('cam', 'houser', 'cameraboy', ''),
+('cam', 'grey', 'camguy', '');
 
 INSERT INTO Categories(type, type_name)
 VALUES ('Groceries', 'grocery_or_supermarket'),
