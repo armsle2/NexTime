@@ -12,6 +12,7 @@ h1 {
     padding: 1%;
     color: #000000;
     font-size: 60px;
+    z-index: 20;
 }
 
 h2 {
@@ -434,12 +435,13 @@ h5 {
     background-color: rgba(255, 255, 255, 0.75);
     border: 8px solid rgba(53, 53, 53, 0.48);
     border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: -153px 0 0 -149px;
-    z-index: 1;
+    position: relative;
+    /* left: 50%; */
+    /* top: 50%; */
+    /* margin: -153px 0 0 -149px; */
+    /* z-index: 1; */
     display: block;
+    margin: 0 auto;
 }
 
 .clock:before, .clock:after {
@@ -457,6 +459,7 @@ h5 {
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     box-shadow: 0 16px 0px rgba(255, 255, 255, 0.75);
+    z-index: 2;
 }
 
 .clock:before {
