@@ -428,7 +428,7 @@ h5 {
     width: 400px;
     height: 400px;
     background-color: rgba(255, 255, 255, 0.75);
-    border: 8px solid #353535;
+    border: 8px solid  rgba(53, 53, 53, 0.48);;
     border-radius: 50%;
     position: absolute;
     left: 50%;
@@ -443,7 +443,7 @@ h5 {
   position: absolute;
   height: 128px;
   width: 8px;
-  background: rgba(0,0,0,0.75);
+  background:  rgba(53, 53, 53, 0.48);;
   border-radius: 4px;
   left: 50%;
   bottom: 128px;
@@ -452,7 +452,7 @@ h5 {
   animation-name: Clock;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-    box-shadow:0 16px 0px rgba(0,0,0,0.75)
+    box-shadow: 0 16px 0px rgba(255, 255, 255, 0.75);
 }
 
 .clock:before {
