@@ -2,7 +2,7 @@
     <div class="category-div">
         <div class="category-header">
             <h1>NexTime</h1>
-            <h3>Welcome <span id="user-name">{{userName}}</span></h3>
+            <h3>Welcome, <span id="user-name">{{userName}}!</span></h3>
         </div>
             
         <div class="category-body">
@@ -22,17 +22,25 @@
     <div class="list-items-div">
         <div class="category-header">
             <h1>{{currentStatus}}</h1>
-            <a href="/to-do"><button>View All Items</button></a>
+            <a href="/to-do"><button class="view-all-btn">View All Items</button></a>
             <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myResultModal">
-  Results modal
-</button>
+            {{!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myResultModal">
+              Results modal
+            </button> --}}
         </div>
         <div class="category-body">
             <ul>
                 {{#each tasks}}
 
-                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">{{this.task}}<img src="/../img/edit.svg" class="edit-button edit-delete" data-toggle="modal" data-target="#myEditModal"/><img src="/../img/delete.svg" class="item-delete edit-delete" data-id="{{this.id}}"/></li>
+                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">
+                  <span class="this-task">{{this.task}}</span>
+
+                  <span class="edit-delete">
+                    <img src="/../img/edit.svg" class="edit-button" data-toggle="modal" data-target="#myEditModal"/>
+                    <img src="/../img/delete.svg" class="item-delete" data-id="{{this.id}}"/>
+                  </span>
+
+                </li>
 
                 {{/each}}
             </ul>

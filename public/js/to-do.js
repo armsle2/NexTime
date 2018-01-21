@@ -1,11 +1,20 @@
+$(function() {
 
-  $(function() {
-
-  // NEW CLICK EVENTS
-  $(document).on("click", "li.list-item", function(){
+  // NEW CLICK EVENTS, revisit this in the AM
+  $(document).on("click", ".this-task", function(){
      $(this).toggleClass("checked");
-     $(".edit-button", this).toggleClass("active");
   });
+
+  // $(document).on("click", "edit-button", function(){
+  //    $("li.list-item.this-task", this).removeClass("checked").removeClass("checked");
+  //    $("li.list-item", this).removeClass("checked");
+  // });
+  // $(document).on("click", ".view-all-btn", function(){
+  //    $(this).addClass("hide");
+  // });
+  // $(document).on("click", ".category-item", function(){
+  //    $(".view-all-btn").removeClass("hide");
+  // });
 
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
@@ -129,4 +138,3 @@
 
   });
 
-}); 

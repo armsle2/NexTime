@@ -71,6 +71,11 @@ a {
 /*    padding: 25px;*/
 }
 
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
 .boxindex {
     border: solid;
     border-width: 1px;
@@ -292,6 +297,15 @@ h4 {
     cursor: pointer;
 }
 
+.view-all-btn {
+    display: block;
+    margin: 0 auto;
+}
+
+.hide {
+    display: none;
+}
+
 .category-header {
     height: 100px;
     -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
@@ -313,8 +327,10 @@ li.list-item {
 li.list-item:hover {
     cursor: pointer;
 }
+
 .edit-delete {
     opacity: 0;
+    float: right;
 }
 
 li.list-item:hover .edit-delete {
@@ -339,7 +355,7 @@ li.list-item.checked:before {
     background-image: url("../img/check-circle.png");
 }
 
-li.list-item.checked {
+.this-task.checked {
     text-decoration: line-through;
 }
 
@@ -358,7 +374,6 @@ li.list-item.checked {
     width: 15px;
     height: 15px;
     margin: 5px;
-    float: right;
 }
 
 h5 {
@@ -404,5 +419,55 @@ h5 {
     background: -moz-linear-gradient(top, rgba(170,186,250,1) 0%, rgba(51,77,222,1) 100%);
 }
 
+/*css clock*/
+.col-sm-12 {
+    z-index: 5;
+}
 
+.clock {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 8px solid #353535;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -185px 0 0 -185px;
+    z-index: 1;
+}
 
+.clock:before,
+.clock:after {
+  content: "";
+  position: absolute;
+  height: 128px;
+  width: 8px;
+  background: rgba(0,0,0,0.75);
+  border-radius: 4px;
+  left: 50%;
+  bottom: 128px;
+  margin: 0 0 0 -4px;
+  transform-origin: bottom;
+  animation-name: Clock;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+    box-shadow:0 16px 0px rgba(0,0,0,0.75)
+}
+
+.clock:before {
+  animation-duration: 720s;
+  height:96px;
+}
+.clock:after {
+  animation-duration: 60s;
+  height:120px;
+}
+@keyframes Clock {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
