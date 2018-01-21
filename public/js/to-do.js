@@ -1,6 +1,26 @@
 $(function() {
   var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
+	$('#submit-sign-up').on('click', function(event){
+		event.preventDefault();
+		let firstName = $("#first-name-sign-up");
+	    let lastName = $("#last-name-sign-up");
+	    let userName = $("#username-sign-up");
+	    let password = $('#password-sign-up');
+	  	let newUser = {
+	  		firstName: firstName.val().trim(),
+	        lastName: lastName.val().trim(),
+	        username: userName.val().toLowerCase().trim(),
+	        password: password.val().trim()
+	  	}
+	  	console.log(newUser)
+		$.post('/api/users', newUser, function(data){
+			console.log(data);
+			window.location.href = `/user/${data.id}/to-do`;
+		})
+
+	})
+
   $(document).on('click', '.item-delete', function(){
         var id = $(this).data("id");
         	console.log(id);
@@ -77,7 +97,7 @@ $(function() {
 
   // })
 
-  $(document).on('click', '#edit-button', function(){
+  $(document).on('click', '.edit-button', function(){
   	let taskID = $(this).parent().data('id');
   	$.get(`/api/todos/${taskID}`, function(data){
   		let addTask = $("#task-edit");
@@ -86,6 +106,7 @@ $(function() {
 	    let userID = $('#addItem');
   		addTask.val(data.task);
         addBody.val(data.body);
+        console.log(data);
         category.val(`${data.Category.id}`);
         $('#edit-item').on('click', function(){
         	let editedItem = {
