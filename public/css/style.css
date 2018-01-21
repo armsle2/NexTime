@@ -14,6 +14,9 @@ h1 {
 h2 {
     color: #000000;
 }
+button {
+    outline: none;
+}
 
 .current-tasks {
     background-color: #F8D300;
@@ -76,12 +79,12 @@ a {
     margin-top: 0;
 }
 
-form {
+ form#sign-in-form {
     padding: 4% 5%;
     background-color: rgba(114, 114, 114, 0.11);
     width: 60%;
     margin: 0 auto;
-}
+} 
 
 .boxindex{
     border: 0;
@@ -193,6 +196,10 @@ form {
     box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
 
 }
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0);
+}
 
 .list-items-div{
     width: 40%;
@@ -222,11 +229,16 @@ form {
     height: 100px;
     background-color: red;
     float: left;
-    padding: 40px;
+    padding: 33px;
     background: rgba(171,191,199,1);
     background: -webkit-linear-gradient(rgba(171,191,199,1) 0%, rgba(1,138,201,1) 100%);
 
 
+}
+
+.category-icon-svg {
+    width: 25px;
+    height: 25px;
 }
 
 .category-title {
@@ -308,14 +320,58 @@ li.list-item.checked:before {
 }
 
 .invisible-edit-delete {
-    opacity: 0;
+    /*opacity: 0;*/
+    float: right;
 }
 
+.plus-icon{
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+}
 
+h5 {
+    display: inline-block;
+    text-transform: uppercase;
+}
 
+/*classes for category items*/
 
+.grocery_or_supermarket {
+    background: rgba(171,191,199,1);
+    background: -webkit-linear-gradient(rgba(171,191,199,1) 0%, rgba(1,138,201,1) 100%);
+    background: -moz-linear-gradient(rgba(171,191,199,1) 0%, rgba(1,138,201,1) 100%);
+}
 
+.pharmacy {
+    background: rgba(222,149,161,1);
+    background: -webkit-linear-gradient(top, rgba(222,149,161,1) 0%, rgba(189,73,102,1) 100%);
+    background: -moz-linear-gradient(top, rgba(222,149,161,1) 0%, rgba(189,73,102,1) 100%);
+}
 
+.bank {
+    background: rgba(153,222,175,1);
+    background: -webkit-linear-gradient(top, rgba(153,222,175,1) 0%, rgba(73,189,73,1) 100%);
+    background: -moz-linear-gradient(top, rgba(153,222,175,1) 0%, rgba(73,189,73,1) 100%);
+}
+
+.shopping_mall {
+    background: rgba(202,151,222,1);
+    background: -webkit-linear-gradient(top, rgba(202,151,222,1) 0%, rgba(114,73,189,1) 100%);
+    background: -moz-linear-gradient(top, rgba(202,151,222,1) 0%, rgba(114,73,189,1) 100%);
+}
+
+.post_office {
+    background: rgba(250,183,100,1);
+    background: -webkit-linear-gradient(top, rgba(250,183,100,1) 0%, rgba(222,82,17,1) 100%);
+    background: -moz-linear-gradient(top, rgba(250,183,100,1) 0%, rgba(222,82,17,1) 100%);
+}
+
+.electronics_store {
+    background: rgba(170,186,250,1);
+    background: -webkit-linear-gradient(top, rgba(170,186,250,1) 0%, rgba(51,77,222,1) 100%);
+    background: -moz-linear-gradient(top, rgba(170,186,250,1) 0%, rgba(51,77,222,1) 100%);
+}
 
 
 

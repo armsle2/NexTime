@@ -29,8 +29,7 @@ $(document).ready(function() {
     });
 
     $(document).on("mouseenter","li.list-item", function(){
-        $(this).css("background-color", "yellow");
-        console.log("hovering");
+        
     });
 
     var items;
