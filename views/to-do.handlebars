@@ -8,7 +8,7 @@
             <div class="category-body">
                         {{#each categories}}
                     <div class="category-item">
-                    <a href="/to-do/category-items/{{this.id}}">
+                    <a href="/user/{{../userID}}/category-items/{{this.id}}">
                         <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.png">
                         </div>
                         <div class="category-title"><h4>{{this.type}}</h4></div>
@@ -20,10 +20,10 @@
     <div class="list-items-div">
         <div class="category-header">
             <h1>{{currentStatus}}</h1>
-            <a href="/to-do"><button>View All Items</button></a>
-            <button type="button" id="test-modal">test</button>
-            <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myResultModal">Results modal</button>
+            {{#if viewAllItems}}
+            <a href="/user/{{userID}}/to-do"><button>View All Items</button></a>
+            {{else}}
+            {{/if}}
         </div>
         <div class="category-body">
             <ul>
