@@ -82,7 +82,7 @@ module.exports = function(app) {
       where: {
         UserId: req.params.id
       },
-      include: [db.Category]
+      include: [db.Category, db.User]
     }).then(function(tasks){
       db.Category.findAll().then(function(allCategories){
         let currentCategories = [];
@@ -109,7 +109,8 @@ module.exports = function(app) {
           currentStatus: `Your ${currentCategoryItems[0].category} List`,
           viewAllItems: true,
           userID: req.params.id,
-          allCategories: allCategories
+          allCategories: allCategories,
+          userName: tasks[0].User.firstName
         }
         res.render('to-do', userItemInfo)
       // res.json(tasks)
@@ -120,6 +121,10 @@ module.exports = function(app) {
 
   app.get("/sign-in", function(req, res) {
     res.render('sign-in');
+    });
+
+  app.get("/sign-up", function(req, res) {
+    res.render('sign-up');
     });
 
   app.get("/test", function(req, res) {
