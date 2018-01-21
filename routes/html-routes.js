@@ -18,39 +18,60 @@ module.exports = function(app) {
   })
   // Route to the to do list / user page
   app.get("/user/:id/to-do", function(req, res) {
+    let currentUserID = req.params.id;
     db.Item.findAll({
       where: {
-        UserId: req.params.id
+        UserId: currentUserID
       },
       include: [db.Category, db.User]
     }).then(function(tasks){
-      db.Category.findAll().then(function(allCategories){
+      if(tasks.length > 0){
+        console.log('we got something')
+        db.Category.findAll().then(function(allCategories){
 
-        let currentCategories = [];
-        //running loop based on user's tasks
-        tasks.forEach((results, index)=>{
-          let categoryID = results.Category.id;
-          function checkTypeArray(type){
-            return type.id != categoryID;
+          let currentCategories = [];
+          //running loop based on user's tasks
+          tasks.forEach((results, index)=>{
+            let categoryID = results.Category.id;
+            function checkTypeArray(type){
+              return type.id != categoryID;
+            }
+            //pushing the category type_name of users tasks to array only ONCE
+            // console.log(currentCategories.every(checkTypeArray))
+            if(currentCategories.every(checkTypeArray)){
+              currentCategories.push(results.Category);
+            }
+          });
+          let userInfo = {
+            tasks: tasks,
+            categories: currentCategories,
+            currentStatus: `Your List`,
+            userName: tasks[0].User.firstName,
+            userID: currentUserID,
+            allCategories: allCategories
           }
-          //pushing the category type_name of users tasks to array only ONCE
-          // console.log(currentCategories.every(checkTypeArray))
-          if(currentCategories.every(checkTypeArray)){
-            currentCategories.push(results.Category);
-          }
-        });
-        let userInfo = {
-          tasks: tasks,
-          categories: currentCategories,
-          currentStatus: `Your List`,
-          userName: tasks[0].User.firstName,
-          userID: tasks[0].UserId,
-          allCategories: allCategories
-        }
-        res.render('to-do', userInfo)
-        // res.json(userInfo)
+          res.render('to-do', userInfo)
 
-      })
+        })
+      }else{
+        db.User.findAll({
+          where: {
+            id: currentUserID
+          }
+        }).then(function(user){
+          db.Category.findAll().then(function(allCategories){
+            let blankUser = {
+              allCategories: allCategories,
+              currentStatus: `Your List`,
+              userID: currentUserID,
+              userName: user[0].firstName
+            }
+            res.render('blank-user', blankUser);
+            // res.json(user);
+          })
+        })
+        
+      }
       
     })
 

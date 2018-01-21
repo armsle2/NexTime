@@ -4,8 +4,8 @@ $(document).ready(function() {
 
 	// This function grabs items from the database and updates the view
 	function getItems() {
-
-	    $.get("/api/todos/", function(data) {
+		console.log($('.user-page').data('id'))
+	    $.get("/api/user/:id/to-do", function(data) {
 	        getLocation();
 			function getLocation() {
 			    if (navigator.geolocation) {
@@ -93,7 +93,9 @@ $(document).ready(function() {
 			        res.results.sort(function(a, b) {
 			              return b.rating - a.rating;
 			        });
-			        $('#location-results').html('')
+			        $('#location-results').html('');
+			        $('#location-address').html('');
+			        $('#location-rating').html('');
 			        $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
 			        res.results.forEach((result, index)=>{
 			        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
