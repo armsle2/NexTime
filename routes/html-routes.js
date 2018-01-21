@@ -13,41 +13,45 @@ module.exports = function(app) {
 
   // Each of the below routes just handles the HTML page that the user gets sent to.
 
-  // index route loads view.html
-  app.get("/", function(req, res) {
-      db.Item.findAll().then(function(tasks){
-        res.render('index', {tasks});
-      })
-  });
-
+  app.get('/', function(req, res){
+    res.render('index')
+  })
   // Route to the to do list / user page
   app.get("/user/:id/to-do", function(req, res) {
     db.Item.findAll({
       where: {
         UserId: req.params.id
       },
-      include: [db.Category]
+      include: [db.Category, db.User]
     }).then(function(tasks){
-      let currentCategories = [];
-      //running loop based on user's tasks
-      tasks.forEach((results, index)=>{
-        let categoryID = results.Category.id;
-        function checkTypeArray(type){
-          return type.id != categoryID;
+      db.Category.findAll().then(function(allCategories){
+
+        let currentCategories = [];
+        //running loop based on user's tasks
+        tasks.forEach((results, index)=>{
+          let categoryID = results.Category.id;
+          function checkTypeArray(type){
+            return type.id != categoryID;
+          }
+          //pushing the category type_name of users tasks to array only ONCE
+          // console.log(currentCategories.every(checkTypeArray))
+          if(currentCategories.every(checkTypeArray)){
+            currentCategories.push(results.Category);
+          }
+        });
+        let userInfo = {
+          tasks: tasks,
+          categories: currentCategories,
+          currentStatus: `Your List`,
+          userName: tasks[0].User.firstName,
+          userID: tasks[0].UserId,
+          allCategories: allCategories
         }
-        //pushing the category type_name of users tasks to array only ONCE
-        // console.log(currentCategories.every(checkTypeArray))
-        if(currentCategories.every(checkTypeArray)){
-          currentCategories.push(results.Category);
-        }
-      });
-      console.log(currentCategories);
-      let userItemInfo = {
-        tasks: tasks,
-        categories: currentCategories,
-        currentStatus: `Your List`
-      }
-      res.render('to-do', userItemInfo)
+        res.render('to-do', userInfo)
+        // res.json(userInfo)
+
+      })
+      
     })
 
   });
@@ -88,9 +92,16 @@ module.exports = function(app) {
     res.render('sign-in');
     });
 
-  // app.get("/sign-in", function(req, res) {
-  //   res.render('sign-in');
-  //   });
+  app.get("/test", function(req, res) {
+
+      db.Item.findAll().then(function(items){
+        db.Category.findAll().then(function(categories){
+          console.log(items);
+          console.log(categories);
+        })
+
+      })
+    });
 
 
 };

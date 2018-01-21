@@ -2,34 +2,42 @@
     <div class="category-div">
         <div class="category-header">
             <h1>NexTime</h1>
-            <h3>Welcome <span id="user-name">UserName</span></h3>
+            <h3>Welcome <span id="user-name">{{userName}}</span></h3>
         </div>
-            {{#each categories}}
-        <a href="/to-do/category-items/{{this.id}}">
-            <div class="category-body">
-                <div class="category-item">
-                    <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.svg" class="category-icon-svg">
-                    </div>
-                    <div class="category-title"><h4>{{this.type}}</h4></div>
+            
+        <div class="category-body">
+          {{#each categories}}
+            <div class="category-item">
+              <a href="/to-do/category-items/{{this.id}}">
+                <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.svg" class="category-icon-svg">
                 </div>
+                <div class="category-title"><h4>{{this.type}}</h4></div>
+              </a>
             </div>
-        </a>
-            {{/each}}
+          {{/each}}
+        </div>
+                
     </div>
+    
     <div class="list-items-div">
         <div class="category-header">
             <h1>{{currentStatus}}</h1>
             <a href="/to-do"><button>View All Items</button></a>
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myResultModal">
+  Results modal
+</button>
         </div>
         <div class="category-body">
             <ul>
                 {{#each tasks}}
 
-                <li class="list-item {{this.id}}">{{this.task}}<button type="button" class="btn btn-primary btn-sm invisible-edit-delete" data-toggle="modal" data-target="#myEditModal">edit</button><button class="btn btn-primary btn-sm item-delete invisible-edit-delete" data-id="{{this.id}}">x</button></li>
+                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">{{this.task}}<img src="/../img/edit.svg" class="edit-button" data-toggle="modal" data-target="#myEditModal"/><img src="/../img/delete.svg" class="item-delete" data-id="{{this.id}}"/></li>
 
                 {{/each}}
             </ul>
-        <button type="button" class="add-btn"data-toggle="modal" data-target="#myModal"><div><img class="plus-icon" src="/../img/plus-circle.svg"><h5>Add New Task</h5></div></button>
+        <button type="button" class="add-btn" data-toggle="modal" data-target="#myModal"><div><img src="/../img/plus-circle.svg" class="plus-icon"/><h5>Add New Task</h5></div></button>
+
     </div>
 
 
@@ -41,9 +49,10 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Add New Task</h4>
+        <p id="missing-data" style="color: red;"></p>
       </div>
       <div class="modal-body">
-            <form id="addItem">
+            <form id="addItem" data-id="{{userID}}">
                 <div class="form-group">
                     <label for="task">Task Name:</label>
                     <input type="text" class="form-control" id="task">
@@ -51,6 +60,10 @@
                     <div class="form-group">
                         <label for="category">Select Category:</label>
                         <select class="form-control" id="category">
+                            <option value="">Choose A Category</option>
+                            {{#each allCategories}}
+                            <option value="{{this.id}}">{{this.type}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <br />
@@ -61,7 +74,7 @@
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "add-item" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "add-item" data-dismiss="">Submit</button>
       </div>
     </div>
   </div>
@@ -74,30 +87,56 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Update Current Task</h4>
+        <p id="missing-edit-data" style="color: red;"></p>
       </div>
       <div class="modal-body">
             <form id="addItem">
                 <div class="form-group">
                     <label for="task">Task Name:</label>
-                    <input type="text" class="form-control" id="task">
+                    <input type="text" class="form-control" id="task-edit">
                     <br />
                     <div class="form-group">
                         <label for="category">Select Category:</label>
-                        <select class="form-control" id="category">
-                            <option></option>
+                        <select class="form-control" id="category-edit">
+                            <option value="">Choose A Category</option>
+                            {{#each allCategories}}
+                            <option value="{{this.id}}">{{this.type}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <br />
                     <label for="body">Notes</label>
-                    <textarea class="form-control" rows="10" id="body"></textarea>
+                    <textarea class="form-control" rows="10" id="body-edit"></textarea>
                     <br />
                 </div>
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "add-item" data-dismiss="modal">Update</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "edit-item" data-dismiss="">Update</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Result Modal -->
+<div class="modal fade" id="myResultModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Near By</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">Relative Distance</div>
+          <div class="col-md-8">Results</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </div>

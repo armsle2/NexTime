@@ -42,7 +42,8 @@ module.exports = function(app) {
     db.Item.findOne({
       where: {
         id: req.params.id
-              }
+      },
+      include: [db.Category]
     })
     .then(function(dbItem) {
       
@@ -66,6 +67,18 @@ module.exports = function(app) {
 
   });
 
+//ROUTE TO UPDATE ITEMS
+   app.delete("/api/todos/:id", function(req, res) {
+   
+    db.Item.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbItem) {
+      res.json(dbItem);
+    });
+
+  });
 
 
   
@@ -78,6 +91,20 @@ module.exports = function(app) {
       category: req.body.category,
       CategoryId: req.body.CategoryId,
       UserId: req.body.UserId
+    })
+    .then(function(dbItem) {
+      res.json(dbItem);
+    });
+  });
+
+  // POST route for saving a new todo
+  app.put("/api/todos/", function (req, res){
+    console.log(req.body);
+    db.Item.update(req.body,
+    {
+      where: {
+        id: req.body.taskID
+      }
     })
     .then(function(dbItem) {
       res.json(dbItem);

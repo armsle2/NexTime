@@ -216,7 +216,7 @@ a {
 
 .category-item{
     clear: both;
-    height: 100px;
+    height: 75px;
 /*    margin: 0 0 30px 0;*/
     background-color: #ffffff;
     -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
@@ -225,11 +225,11 @@ a {
 }
 
 .category-icon {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     background-color: red;
     float: left;
-    padding: 33px;
+    padding: 24px;
     background: rgba(171,191,199,1);
     background: -webkit-linear-gradient(rgba(171,191,199,1) 0%, rgba(1,138,201,1) 100%);
 
@@ -242,7 +242,7 @@ a {
 }
 
 .category-title {
-    margin-left: 100px;
+    margin-left: 75px;
 }
 
 h3 {
@@ -255,10 +255,10 @@ h3 {
 }
 
 h4 {
-    margin: 10px;
+/*    margin: 10px;*/
     padding: 10px;
     font-size: 20px;
-    line-height: 80px;
+    line-height: 60px;
 
 }
 
@@ -298,7 +298,9 @@ h4 {
 }
 
 .category-body {
-    padding: 3% 10%;
+    padding: 3% 10% 0 10%;
+    overflow-y: auto;
+    height: 80%;
 }
 
 li.list-item {
@@ -328,6 +330,13 @@ li.list-item.checked:before {
     width: 25px;
     height: 25px;
     margin: 5px;
+}
+
+.edit-button, .item-delete {
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+    float: right;
 }
 
 h5 {
