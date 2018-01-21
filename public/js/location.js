@@ -93,10 +93,15 @@ $(document).ready(function() {
 			        res.results.sort(function(a, b) {
 			              return b.rating - a.rating;
 			        });
-			        console.log(`-------------\nResults Based On ${type}`)
+			        $('#location-results').html('')
+			        $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
 			        res.results.forEach((result, index)=>{
-			          console.log(`${index+1}: \n Name: ${result.name}\n Address: ${result.vicinity} \n Rating: ${result.rating}`);
+			        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
+			        $('#location-address').append(`Address: ${result.vicinity}`)
+			        $('#location-rating').append(`Rating: ${result.rating}`)
 			        })
+					$('#myResultModal').modal('show');
+
 			    });
 			};
 		});

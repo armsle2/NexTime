@@ -1,6 +1,9 @@
 $(function() {
   var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
+$('#test-modal').on('click', function(){
+})
+
   $(document).on('click', '.item-delete', function(){
         var id = $(this).data("id");
         	console.log(id);
@@ -77,7 +80,7 @@ $(function() {
 
   // })
 
-  $(document).on('click', '#edit-button', function(){
+  $(document).on('click', '.edit-button', function(){
   	let taskID = $(this).parent().data('id');
   	$.get(`/api/todos/${taskID}`, function(data){
   		let addTask = $("#task-edit");

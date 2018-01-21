@@ -2,34 +2,34 @@
     <div class="category-div">
         <div class="category-header">
             <h1>NexTime</h1>
-            <h3>Welcome <span id="user-name">{{userName}} {{userID}}</span></h3>
+            <h3>Welcome <span id="user-name">{{userName}}</span></h3>
         </div>
-            {{#each categories}}
-        <a href="/to-do/category-items/{{this.id}}">
+            
             <div class="category-body">
-                <div class="category-item">
-                    <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.png">
+                        {{#each categories}}
+                    <div class="category-item">
+                    <a href="/to-do/category-items/{{this.id}}">
+                        <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.png">
+                        </div>
+                        <div class="category-title"><h4>{{this.type}}</h4></div>
+                    </a>
                     </div>
-                    <div class="category-title"><h4>{{this.type}}</h4></div>
-                </div>
+                        {{/each}}
             </div>
-        </a>
-            {{/each}}
     </div>
     <div class="list-items-div">
         <div class="category-header">
             <h1>{{currentStatus}}</h1>
             <a href="/to-do"><button>View All Items</button></a>
+            <button type="button" id="test-modal">test</button>
             <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myResultModal">
-  Results modal
-</button>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myResultModal">Results modal</button>
         </div>
         <div class="category-body">
             <ul>
                 {{#each tasks}}
 
-                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">{{this.task}}<button type="button" class="btn btn-primary btn-sm" id="edit-button" data-toggle="modal" data-target="#myEditModal">edit</button><button class="btn btn-primary btn-sm item-delete" data-id="{{this.id}}">x</button></li>
+                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">{{this.task}}<button type="button" class="btn btn-primary btn-sm edit-button" data-toggle="modal" data-target="#myEditModal">edit</button><button class="btn btn-primary btn-sm item-delete" data-id="{{this.id}}">x</button></li>
 
                 {{/each}}
             </ul>
@@ -125,7 +125,13 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-4">Relative Distance</div>
-          <div class="col-md-8">Results</div>
+          <div class="col-md-8">
+            <h3>Results</h3>
+            <div id="location-results"></div>
+            <div id="location-name"></div>
+            <div id="location-address"></div>
+            <div id="location-rating"></div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
