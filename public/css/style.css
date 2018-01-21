@@ -217,11 +217,16 @@ a {
 .category-item{
     clear: both;
     height: 75px;
-/*    margin: 0 0 30px 0;*/
     background-color: #ffffff;
     -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
+}
+
+.category-item:hover {
+    background-color: #f4f4f4;
+    text-decoration: none;
+
 }
 
 .category-icon {
@@ -232,8 +237,6 @@ a {
     padding: 24px;
     background: rgba(171,191,199,1);
     background: -webkit-linear-gradient(rgba(171,191,199,1) 0%, rgba(1,138,201,1) 100%);
-
-
 }
 
 .category-icon-svg {
@@ -307,17 +310,36 @@ li.list-item {
     padding: 5px 0;
 }
 
+li.list-item:hover {
+    cursor: pointer;
+}
+.edit-delete {
+    opacity: 0;
+}
+
+li.list-item:hover .edit-delete {
+    opacity: 1;
+    -webkit-transition:.25s ease-in-out;
+    -moz-transition:.25s ease-in-out;
+    -o-transition:.25s ease-in-out;
+    transition:.25s ease-in-out;
+}
+
 li.list-item:before {
    content: '';
    display: inline-block;
-   height: 20px;
-   width: 20px;
+   height: 10px;
+   width: 10px;
+   margin: 0 5px;
    background-image: url("../img/circle.png");
    background-size: cover;
 }
 
 li.list-item.checked:before {
     background-image: url("../img/check-circle.png");
+}
+
+li.list-item.checked {
     text-decoration: line-through;
 }
 

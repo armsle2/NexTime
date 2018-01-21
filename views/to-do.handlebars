@@ -18,7 +18,7 @@
         </div>
                 
     </div>
-    
+
     <div class="list-items-div">
         <div class="category-header">
             <h1>{{currentStatus}}</h1>
@@ -32,7 +32,7 @@
             <ul>
                 {{#each tasks}}
 
-                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">{{this.task}}<img src="/../img/edit.svg" class="edit-button" data-toggle="modal" data-target="#myEditModal"/><img src="/../img/delete.svg" class="item-delete" data-id="{{this.id}}"/></li>
+                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">{{this.task}}<img src="/../img/edit.svg" class="edit-button edit-delete" data-toggle="modal" data-target="#myEditModal"/><img src="/../img/delete.svg" class="item-delete edit-delete" data-id="{{this.id}}"/></li>
 
                 {{/each}}
             </ul>
