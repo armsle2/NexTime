@@ -1,0 +1,117 @@
+<div class="container-fluid user-page" data-id="{{userID}}">
+    <div class="list-items-div">
+        <div class="category-header">
+          <h1>NexTime</h1>
+          <h3>Welcome <span id="user-name">{{userName}}!</span></h3>
+        </div>
+        <div class="category-body">
+          <h3>ADD YOUR FIRST ITEM</h3>
+        <button type="button" class="add-btn" data-toggle="modal" data-target="#myModal"><div><img src="/../img/plus-circle.png"></div></button>
+    </div>
+
+
+
+<!-- New Task Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add New Task</h4>
+        <p id="missing-data" style="color: red;"></p>
+      </div>
+      <div class="modal-body">
+            <form id="addItem" data-id="{{userID}}">
+                <div class="form-group">
+                    <label for="task">Task Name:</label>
+                    <input type="text" class="form-control" id="task">
+                    <br />
+                    <div class="form-group">
+                        <label for="category">Select Category:</label>
+                        <select class="form-control" id="category">
+                            <option value="">Choose A Category</option>
+                            {{#each allCategories}}
+                            <option value="{{this.id}}">{{this.type}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <br />
+                    <label for="body">Notes</label>
+                    <textarea class="form-control" rows="10" id="body"></textarea>
+                    <br />
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "add-item" data-dismiss="">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update/Edit Modal -->
+<div class="modal fade" id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Update Current Task</h4>
+        <p id="missing-edit-data" style="color: red;"></p>
+      </div>
+      <div class="modal-body">
+            <form id="addItem">
+                <div class="form-group">
+                    <label for="task">Task Name:</label>
+                    <input type="text" class="form-control" id="task-edit">
+                    <br />
+                    <div class="form-group">
+                        <label for="category">Select Category:</label>
+                        <select class="form-control" id="category-edit">
+                            <option value="">Choose A Category</option>
+                            {{#each allCategories}}
+                            <option value="{{this.id}}">{{this.type}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <br />
+                    <label for="body">Notes</label>
+                    <textarea class="form-control" rows="10" id="body-edit"></textarea>
+                    <br />
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "edit-item" data-dismiss="">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Result Modal -->
+<div class="modal fade" id="myResultModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Near By</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">Relative Distance</div>
+          <div class="col-md-8">
+            <h3>Results</h3>
+            <div id="location-results"></div>
+            <div id="location-name"></div>
+            <div id="location-address"></div>
+            <div id="location-rating"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</div>

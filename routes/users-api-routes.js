@@ -14,12 +14,24 @@ module.exports = function(app) {
 
   // GET route for getting all of the posts
   app.get("/api/users/", function(req, res) {
-    db.Item.findAll()
+    db.User.findAll()
     .then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
+// GET route for getting all of the posts
+  app.get("/api/user/:id/to-do", function(req, res) {
+    db.Item.findAll({
+      where: {
+        id: req.params.id
+      },
+      include: [db.Category]
+    })
+    .then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
 
 
   

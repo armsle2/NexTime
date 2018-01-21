@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NexTime</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="category-div">
+            <div class="category-item">
+                <div class="category-icon"><img src="../public/img/bank.png" /></div>
+                <div class="category-title">Bank</div>
+                <div class="category-task-number">2 items in Bank</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon"><img src="../public/img/grocery_or_supermarket.png" /></div>
+                <div class="category-title">Grocery or Supermarket</div>
+                <div class="category-task-number">4 items in Grocery store or Supermarket</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon"><img src="../public/img/pharmacy.png" /></div>
+                <div class="category-title">Pharmacy</div>
+                <div class="category-task-number">1 item in Pharmacy</div>
+            </div>
+        </div>
+
+
+
+        <div class="list-items-div">
+{{!--             <ul>
+                {{#each tasks}}
+                <li>{{this.task}}</li>
+                {{/each}}
+            </ul> --}}
+        </div>
+    </div>
+
+</body>
+</html>
+
+

@@ -4,8 +4,8 @@ $(document).ready(function() {
 
 	// This function grabs items from the database and updates the view
 	function getItems() {
-
-	    $.get("/api/todos/", function(data) {
+		console.log($('.user-page').data('id'))
+	    $.get("/api/user/:id/to-do", function(data) {
 	        getLocation();
 			function getLocation() {
 			    if (navigator.geolocation) {
@@ -41,7 +41,7 @@ $(document).ready(function() {
 			    // googleAPI(type, lat1, lon1);
 			    let positionDiff = distance(lat1, lon1, lat2, lon2)
 			    //below is a condtional for if the users new location (lat2,lon2) is more than 1 mile away from their first location (lat1,lon1)
-			    if(positionDiff > 1){
+			    // if(positionDiff > 1){
 			    	let categoryTypeName = [];
 			    	//running loop based on user's tasks
 			    	data.forEach((results, index)=>{
@@ -62,7 +62,7 @@ $(document).ready(function() {
 						    googleAPI(results, lat2, lon2);
 		    			})
 		    		}
-			    }   
+			    // }   
 			}
 
 			function distance(lat1, lon1, lat2, lon2, unit) {
@@ -93,10 +93,17 @@ $(document).ready(function() {
 			        res.results.sort(function(a, b) {
 			              return b.rating - a.rating;
 			        });
-			        console.log(`-------------\nResults Based On ${type}`)
+			        $('#location-results').html('');
+			        $('#location-address').html('');
+			        $('#location-rating').html('');
+			        $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
 			        res.results.forEach((result, index)=>{
-			          console.log(`${index+1}: \n Name: ${result.name}\n Address: ${result.vicinity} \n Rating: ${result.rating}`);
+			        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
+			        $('#location-address').append(`Address: ${result.vicinity}`)
+			        $('#location-rating').append(`Rating: ${result.rating}`)
 			        })
+					$('#myResultModal').modal('show');
+
 			    });
 			};
 		});
