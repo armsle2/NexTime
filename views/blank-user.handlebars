@@ -1,56 +1,12 @@
 <div class="container-fluid user-page" data-id="{{userID}}">
-    <div class="category-div">
-        <div class="category-header">
-            <h1>NexTime</h1>
-            <h3>Welcome <span id="user-name">{{userName}}</span></h3>
-        </div>
-            
-        <div class="category-body">
-          {{#each categories}}
-            <div class="category-item">
-              <a href="/user/{{../userID}}/category-items/{{this.id}}">
-              <div class="category-icon {{this.type_name}}"><img src="/../img/{{this.type_name}}.svg" class="category-icon-svg">
-              </div>
-              <div class="category-title"><h4>{{this.type}}</h4></div>
-            </a>
-            </div>
-          {{/each}}
-        </div>
-    </div>
-
     <div class="list-items-div">
         <div class="category-header">
-            <h1>{{currentStatus}}</h1>
-
-            {{#if viewAllItems}}
-            <a href="/user/{{userID}}/to-do"><button>View All Items</button></a>
-            {{else}}
-            {{/if}}
-
+          <h1>NexTime</h1>
+          <h3>Welcome <span id="user-name">{{userName}}!</span></h3>
         </div>
         <div class="category-body">
-            <ul>
-                {{#each tasks}}
-
-                <li class="list-item" id="item-{{this.id}}"data-id="{{this.id}}">
-
-                  <span class="this-task">
-                    {{this.task}}
-                  </span>
-
-                  <span class="edit-delete">
-                    <img src="/../img/edit.svg" class="edit-button" data-toggle="modal" data-target="#myEditModal"/>
-                    <img src="/../img/delete.svg" class="item-delete" data-id="{{this.id}}"/>
-                  <span>
-
-                </li>
-
-                {{/each}}
-            </ul>
-        <button type="button" class="add-btn" data-toggle="modal" data-target="#myModal">
-          <img src="/../img/plus-circle.svg" class="plus-icon"/><h5>Add New Task</h5>
-        </button>
-
+          <h3>ADD YOUR FIRST ITEM</h3>
+        <button type="button" class="add-btn" data-toggle="modal" data-target="#myModal"><div><img src="/../img/plus-circle.png"></div></button>
     </div>
 
 

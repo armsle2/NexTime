@@ -2,13 +2,16 @@ body {
     background-color: #D8D8D8;
     color: 000000;
     background-image: url("../img/doodles.png");
+    font-family: 'Fjord One', serif;
 }
 
 h1 {
+    font-family: 'Acme', sans-serif;
     text-align: center;
     margin: 0;
     padding: 1%;
     color: #000000;
+    font-size: 60px;
 }
 
 h2 {
@@ -256,6 +259,7 @@ a:hover {
 h3 {
     text-align: center;
     margin: 0;
+    font-family: 'Fjord One', serif;
 }
 
 .category-task-number{
@@ -425,44 +429,46 @@ h5 {
 }
 
 .clock {
-    width: 400px;
-    height: 400px;
+    width: 100px;
+    height: 100px;
     background-color: rgba(255, 255, 255, 0.75);
-    border: 8px solid  rgba(53, 53, 53, 0.48);;
+    border: 8px solid rgba(53, 53, 53, 0.48);
     border-radius: 50%;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin: -185px 0 0 -185px;
+    margin: -153px 0 0 -149px;
     z-index: 1;
+    display: block;
 }
 
-.clock:before,
-.clock:after {
-  content: "";
-  position: absolute;
-  height: 128px;
-  width: 8px;
-  background:  rgba(53, 53, 53, 0.48);;
-  border-radius: 4px;
-  left: 50%;
-  bottom: 128px;
-  margin: 0 0 0 -4px;
-  transform-origin: bottom;
-  animation-name: Clock;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+.clock:before, .clock:after {
+    content: "";
+    position: absolute;
+    height: 128px;
+    width: 8px;
+    background: rgba(53, 53, 53, 0.48);
+    border-radius: 4px;
+    left: 50%;
+    bottom: 38px;
+    margin: 0 0 0 -4px;
+    transform-origin: bottom;
+    animation-name: Clock;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     box-shadow: 0 16px 0px rgba(255, 255, 255, 0.75);
 }
 
 .clock:before {
-  animation-duration: 720s;
-  height:96px;
+    animation-duration: 720s;
+    height: 38px;
 }
+
 .clock:after {
-  animation-duration: 60s;
-  height:120px;
+    animation-duration: 60s;
+    height: 38px;
 }
+
 @keyframes Clock {
   0% {
     transform: rotate(0deg)
