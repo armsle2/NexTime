@@ -1,20 +1,36 @@
 <div class="container landing">  
 
-    <div class="row">
-        <div class="clock">
-            <h1>NexTime</h1>
+    <div class="row landing-content">
+        <div class="logo-landing">
+            <div class="clock"></div>
+            <h1 class="logo-text"><span class="nex">Nex</span>Time</h1>
         </div>
-    </div>
 
-    <div class="row">
         <h3>The greatest app ever!</h3>
+
+        <a href="/sign-up"><button type="submit" class="btn btn-success landing-btn">Create An Account</button></a>
+
+        <a href="/sign-in"><button type="submit" class="btn btn-success landing-btn">Sign In</button></a>
+
+        <p class="learn-more">New to NexTime? Learn more <a src="" data-toggle="modal" data-target="#learnModal">here</a>.</p>
+
     </div>
 
-    <div class="row">
-        <div class="userContainer">
-            <a href="/sign-in"><button type="submit" class="btn btn-success">Sign In</button></a>
-            <a href="/sign-up"><button type="submit" class="btn btn-success">Create An Account</button></a>
-        </div>
+</div>
+
+<!-- Learn more modal -->
+<div class="modal fade" id="learnModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">About NexTime</h4>
+        <p id="missing-data" style="color: red;"></p>
+      </div>
+
+      <div class="modal-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at ante lectus. Phasellus gravida lectus non fermentum convallis. Nullam sapien velit, cursus vel ligula sit amet, cursus pulvinar erat. Vestibulum efficitur mauris ut sapien commodo, ac faucibus turpis gravida. Phasellus felis ante, commodo id lacinia ac, luctus porttitor elit. Phasellus quis mi ipsum. Sed quis metus nulla. Aliquam ac ipsum vel lectus cursus venenatis. Quisque fermentum sit amet ex eget volutpat. Quisque gravida leo nec velit dapibus interdum. Maecenas pharetra, lorem at convallis ornare, ligula velit pulvinar leo, ac ornare libero lectus eu orci.</p>
+      </div>
     </div>
-    
+  </div>
 </div>
