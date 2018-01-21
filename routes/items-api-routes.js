@@ -100,15 +100,11 @@ module.exports = function(app) {
   // POST route for saving a new todo
   app.put("/api/todos/", function (req, res){
     console.log(req.body);
-    db.Item.update({
+    db.Item.update(req.body,
+    {
       where: {
-        id: req.body.UserId
-      },
-      task: req.body.task,
-      body: req.body.body,
-      category: req.body.category,
-      CategoryId: req.body.CategoryId,
-      UserId: req.body.UserId
+        id: req.body.taskID
+      }
     })
     .then(function(dbItem) {
       res.json(dbItem);
