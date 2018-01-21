@@ -26,5 +26,9 @@ app.get("/add", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/add.html"));
   });
 
+app.get("/user", function(req, res){
+    res.sendFile(path.join(__dirname, "../public/userInput.html"))
+});
+
 
 };
