@@ -1,6 +1,11 @@
 $(function() {
   var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
+  // NEW CLICK EVENTS, revisit this in the AM
+  $(document).on("click", ".list-item", function(){
+     $(this, ".this-task").toggleClass("checked");
+  });
+
 	$('#submit-sign-up').on('click', function(event){
 		event.preventDefault();
 		let firstName = $("#first-name-sign-up");
@@ -19,11 +24,24 @@ $(function() {
 			window.location.href = `/user/${data.id}/to-do`;
 		})
 
-	})
+	});
 
   $(document).on('click', '.item-delete', function(){
-        var id = $(this).data("id");
-        	console.log(id);
+      var id = $(this).data("id");
+      console.log(id);
+  		$.ajax({
+            method: "DELETE",
+            url: "/api/todos/" + id
+        }).then(function(data){
+        	// $(`li.${id}`).remove();
+        	location.reload();
+        	// console.log(data)
+        });
+    });
+
+  $(document).on('click', '.item-delete', function(){
+      var id = $(this).data("id");
+      console.log(id);
   		$.ajax({
             method: "DELETE",
             url: "/api/todos/" + id
@@ -82,21 +100,8 @@ $(function() {
 		  	location.reload();	
 	  	})
   	}
-  	
-
-  })
-
-  // $(document).on('click', '#edit-item', function(event){
-  // 	// event.preventDefault();
-  	let addTask = $("#task");
-    let addBody = $("#body");
-    let category = $("#category");
-    let userID = $('#addItem');
-  	
-  	
-
-  // })
-
+  });
+  //COME BACK TO THIS!  	
   $(document).on('click', '.edit-button', function(){
   	let taskID = $(this).parent().data('id');
   	$.get(`/api/todos/${taskID}`, function(data){
@@ -106,7 +111,6 @@ $(function() {
 	    let userID = $('#addItem');
   		addTask.val(data.task);
         addBody.val(data.body);
-        console.log(data);
         category.val(`${data.Category.id}`);
         $('#edit-item').on('click', function(){
         	let editedItem = {
@@ -138,6 +142,7 @@ $(function() {
         })
         
   	})
-  })
+  });
 
 });
+
