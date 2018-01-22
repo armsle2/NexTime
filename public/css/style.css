@@ -18,7 +18,8 @@ h1 {
 h2 {
     color: #000000;
 }
-button {
+
+button:focus {
     outline: none;
 }
 
