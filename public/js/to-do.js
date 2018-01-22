@@ -1,9 +1,9 @@
 $(function() {
   var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
-  // NEW CLICK EVENTS, revisit this in the AM
-  $(document).on("click", ".list-item", function(){
-     $(this, ".this-task").toggleClass("checked");
+  $(document).on("click", ".this-task", function(){
+     $(this).toggleClass("checked");
+     $(this).parent().toggleClass("checked");
   });
 
   //sign-up click handler
