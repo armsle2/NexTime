@@ -326,7 +326,7 @@ h4 {
 }
 
 .category-header {
-    height: 120px;
+/*    height: 120px;*/
     -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
@@ -457,7 +457,14 @@ h5 {
     letter-spacing: -2px;
 }
 
-.nex{
+.user-logo-text {
+    font-family: 'Acme', sans-serif;
+    text-align: left;
+    letter-spacing: -2px;
+    margin-top: -15px;
+}
+
+.nex {
     color: #18bc9c;
 }
 
@@ -499,6 +506,46 @@ h5 {
 .clock:after {
     animation-duration: 60s;
     height: 38px;
+}
+
+.user-clock {
+    width: 75px;
+    height: 75px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 8px solid rgb(0, 0, 0);
+    border-radius: 50%;
+    position: relative;
+    display: block;
+    margin: -10px 0px;
+    float: left;
+}
+
+.user-clock:before, .user-clock:after {
+    content: "";
+    position: absolute;
+    /* height: 50px; */
+    width: 8px;
+    background: rgba(24, 188, 156, 0.70);
+    border-radius: 4px;
+    left: 50%;
+    bottom: 30px;
+    margin: 0 0 0 -4px;
+    transform-origin: bottom;
+    animation-name: Clock;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    box-shadow: 0 5px 0px rgba(24, 188, 156, 0.5);
+    z-index: 2;
+}
+
+.user-clock:before {
+    animation-duration: 720s;
+    height: 25px;
+}
+
+.user-clock:after {
+    animation-duration: 60s;
+    height: 25px;
 }
 
 @keyframes Clock {
