@@ -1,8 +1,11 @@
 <div class="container-fluid user-page" data-id="{{userID}}">
     <div class="category-div">
         <div class="category-header">
-            <h1>NexTime</h1>
-            <h3>Welcome <span id="user-name">{{userName}}</span></h3>
+          <div class="logo">
+              <div class="clock"></div>
+              <h1 class="logo-text"><span class="nex">Nex</span>Time</h1>
+          </div>
+          <h3>Welcome <span id="user-name">{{userName}}!</span></h3>
         </div>
             
         <div class="category-body">
@@ -20,7 +23,7 @@
 
     <div class="list-items-div">
         <div class="category-header">
-            <h1>{{currentStatus}}</h1>
+            <h2>{{currentStatus}}</h2>
 
             {{#if viewAllItems}}
             <a href="/user/{{userID}}/to-do"><button>View All Items</button></a>

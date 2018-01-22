@@ -1,12 +1,15 @@
 <div class="container-fluid user-page" data-id="{{userID}}">
     <div class="list-items-div">
         <div class="category-header">
-          <h1>NexTime</h1>
+          <div class="logo">
+              <div class="clock"></div>
+              <h1 class="logo-text"><span class="nex">Nex</span>Time</h1>
+          </div>
           <h3>Welcome <span id="user-name">{{userName}}!</span></h3>
         </div>
         <div class="category-body">
-          <h3>ADD YOUR FIRST ITEM</h3>
-        <button type="button" class="add-btn" data-toggle="modal" data-target="#myModal"><div><img src="/../img/plus-circle.png"></div></button>
+          <button type="button" data-toggle="modal" data-target="#myModal">ADD YOUR FIRST ITEM</button>
+        <button type="button" class="add-btn" data-toggle="modal" data-target="#myModal"><img src="/../img/plus-circle.svg" class="plus-icon"/><h5>Add New Task</h5></button>
     </div>
 
 
