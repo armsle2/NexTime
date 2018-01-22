@@ -6,6 +6,7 @@ $(function() {
      $(this, ".this-task").toggleClass("checked");
   });
 
+  //sign-up click handler
 	$('#submit-sign-up').on('click', function(event){
 		event.preventDefault();
 		let firstName = $("#first-name-sign-up");
@@ -23,28 +24,43 @@ $(function() {
 			console.log(data);
 			window.location.href = `/user/${data.id}/to-do`;
 		})
-
 	});
 
-  $(document).on('click', '.item-delete', function(){
-      var id = $(this).data("id");
-      console.log(id);
-  		$.ajax({
-            method: "DELETE",
-            url: "/api/todos/" + id
-        }).then(function(data){
-        	// $(`li.${id}`).remove();
-        	location.reload();
-        	// console.log(data)
+  //sign-in click handler
+  $(document).on('click', '#submit-sign-in', function(event){
+    event.preventDefault();
+    let username = $('#username-sign-in').val().toLowerCase().trim();
+    let password = $('#password-sign-in').val().trim();
+    $.get('/api/users', function(data){
+      function checkUsers(user){
+        return user.username === username;
+      }
+       let userMatch = data.find(checkUsers);
+       // let passwordMatch = data.find(checkUsers);
+       console.log(userMatch);
+       if(userMatch){
+          if (userMatch.password === password) {
+            window.location.href = `/user/${userMatch.id}/to-do`;
+          }else{
+            $('#username-sign-in, #password-sign-in').addClass('shake').one(animationEnd, function(){
+              $(this).removeClass('shake');
+            });
+          }
+       }else{
+        $('#username-sign-in, #password-sign-in').addClass('shake').one(animationEnd, function(){
+          $(this).removeClass('shake');
         });
-    });
+       }
+    })
+  });
 
+  //delete item click handler
   $(document).on('click', '.item-delete', function(){
       var id = $(this).data("id");
       console.log(id);
   		$.ajax({
             method: "DELETE",
-            url: "/api/todos/" + id
+            url: `/api/todos/${id}`
         }).then(function(data){
         	// $(`li.${id}`).remove();
         	location.reload();
@@ -52,25 +68,7 @@ $(function() {
         });
   });
 
-  $(document).on('click', '#submit-sign-in', function(event){
-  	event.preventDefault();
-  	let username = $('#username-sign-in').val().toLowerCase().trim();
-  	$.get('/api/users', function(data){
-  		function checkUsers(user){
-  			return user.username === username;
-  		}
-  		 let userMatch = data.find(checkUsers);
-  		 console.log(userMatch);
-  		 if(userMatch){
-  		 	window.location.href = `/user/${userMatch.id}/to-do`;
-  		 }else{
-  		 	$('#username-sign-in').addClass('shake').one(animationEnd, function(){
-  				$(this).removeClass('shake');
-  			});
-  		 }
-  	})
-  })
-
+  //add item click handler
   $(document).on('click', '#add-item', function(event){
   	// event.preventDefault();
   	let addTask = $("#task");
@@ -101,7 +99,8 @@ $(function() {
 	  	})
   	}
   });
-  //COME BACK TO THIS!  	
+
+  //edit item click handler 	
   $(document).on('click', '.edit-button', function(){
   	let taskID = $(this).parent().parent().data('id');
     console.log(taskID)
