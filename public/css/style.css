@@ -19,8 +19,9 @@ h2 {
     color: #000000;
 }
 
-button:focus {
-    outline:0 !important;
+
+button:focus{
+    outline: 0 !important;
 }
 
 .current-tasks {
