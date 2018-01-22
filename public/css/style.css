@@ -11,13 +11,14 @@ h1 {
     margin: 0;
     padding: 1%;
     color: #000000;
-    font-size: 60px;
+    font-size: 80px;
     z-index: 20;
 }
 
 h2 {
     color: #000000;
 }
+
 
 button:focus{
     outline: 0 !important;
@@ -54,18 +55,17 @@ button:focus{
 }
 
 .landing {
-    /* padding: 25%; */
     width: 85vh;
     height: 85vh;
     border-radius: 85vh;
     background-color: rgba(255, 255, 255, 0.67);
     border: 15px solid rgba(0, 0, 0, 0.14);
-    padding: 15%;
+    padding: 8%;
     margin: 5% auto;
 }
 
 .landing-content {
-    margin: 10vh 0;
+    margin: 8vh 0;
 }
 
 .landing-btn {
@@ -76,9 +76,8 @@ button:focus{
 }
 
 .learn-more{
-    position: absolute;
-    bottom: 1%;
-    margin: 0 auto;
+    text-align: center;
+    margin-top: 13%;
 }
 
 .input-group {
@@ -87,8 +86,8 @@ button:focus{
 
 a {
     color: black;
-    font-size: 20px;
-/*    padding: 25px;*/
+    font-size: 16px;
+    font-weight: bold;
 }
 
 a:hover {
@@ -328,7 +327,7 @@ h4 {
 }
 
 .category-header {
-    height: 120px;
+/*    height: 120px;*/
     -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
@@ -459,7 +458,14 @@ h5 {
     letter-spacing: -2px;
 }
 
-.nex{
+.user-logo-text {
+    font-family: 'Acme', sans-serif;
+    text-align: left;
+    letter-spacing: -2px;
+    margin-top: -15px;
+}
+
+.nex {
     color: #18bc9c;
 }
 
@@ -470,12 +476,8 @@ h5 {
     border: 8px solid rgb(0, 0, 0);
     border-radius: 50%;
     position: relative;
-    /* left: 50%; */
-    /* top: 50%; */
-    /* margin: -153px 0 0 -149px; */
-    /* z-index: 1; */
     display: block;
-    margin: -20px 0px;
+    margin: -10px 0px;
     float: left;
 }
 
@@ -505,6 +507,46 @@ h5 {
 .clock:after {
     animation-duration: 60s;
     height: 38px;
+}
+
+.user-clock {
+    width: 75px;
+    height: 75px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 8px solid rgb(0, 0, 0);
+    border-radius: 50%;
+    position: relative;
+    display: block;
+    margin: -10px 0px;
+    float: left;
+}
+
+.user-clock:before, .user-clock:after {
+    content: "";
+    position: absolute;
+    /* height: 50px; */
+    width: 8px;
+    background: rgba(24, 188, 156, 0.70);
+    border-radius: 4px;
+    left: 50%;
+    bottom: 30px;
+    margin: 0 0 0 -4px;
+    transform-origin: bottom;
+    animation-name: Clock;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    box-shadow: 0 5px 0px rgba(24, 188, 156, 0.5);
+    z-index: 2;
+}
+
+.user-clock:before {
+    animation-duration: 720s;
+    height: 25px;
+}
+
+.user-clock:after {
+    animation-duration: 60s;
+    height: 25px;
 }
 
 @keyframes Clock {
