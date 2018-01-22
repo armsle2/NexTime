@@ -103,7 +103,8 @@ $(function() {
   });
   //COME BACK TO THIS!  	
   $(document).on('click', '.edit-button', function(){
-  	let taskID = $(this).parent().data('id');
+  	let taskID = $(this).parent().parent().data('id');
+    console.log(taskID)
   	$.get(`/api/todos/${taskID}`, function(data){
   		let addTask = $("#task-edit");
 	    let addBody = $("#body-edit");
@@ -112,7 +113,7 @@ $(function() {
   		addTask.val(data.task);
         addBody.val(data.body);
         category.val(`${data.Category.id}`);
-        $('#edit-item').on('click', function(){
+        $('#update-item').on('click', function(){
         	let editedItem = {
         	taskID: taskID,
 	  		task: addTask.val().trim(),
