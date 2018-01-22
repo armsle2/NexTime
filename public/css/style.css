@@ -11,7 +11,7 @@ h1 {
     margin: 0;
     padding: 1%;
     color: #000000;
-    font-size: 60px;
+    font-size: 80px;
     z-index: 20;
 }
 
@@ -20,7 +20,7 @@ h2 {
 }
 
 button:focus {
-    outline: none;
+    outline:0 !important;
 }
 
 .current-tasks {
@@ -54,18 +54,17 @@ button:focus {
 }
 
 .landing {
-    /* padding: 25%; */
     width: 85vh;
     height: 85vh;
     border-radius: 85vh;
     background-color: rgba(255, 255, 255, 0.67);
     border: 15px solid rgba(0, 0, 0, 0.14);
-    padding: 15%;
+    padding: 8%;
     margin: 5% auto;
 }
 
 .landing-content {
-    margin: 10vh 0;
+    margin: 8vh 0;
 }
 
 .landing-btn {
@@ -76,9 +75,8 @@ button:focus {
 }
 
 .learn-more{
-    position: absolute;
-    bottom: 1%;
-    margin: 0 auto;
+    text-align: center;
+    margin-top: 13%;
 }
 
 .input-group {
@@ -87,8 +85,8 @@ button:focus {
 
 a {
     color: black;
-    font-size: 20px;
-/*    padding: 25px;*/
+    font-size: 16px;
+    font-weight: bold;
 }
 
 a:hover {
@@ -470,12 +468,8 @@ h5 {
     border: 8px solid rgb(0, 0, 0);
     border-radius: 50%;
     position: relative;
-    /* left: 50%; */
-    /* top: 50%; */
-    /* margin: -153px 0 0 -149px; */
-    /* z-index: 1; */
     display: block;
-    margin: -20px 0px;
+    margin: -10px 0px;
     float: left;
 }
 
