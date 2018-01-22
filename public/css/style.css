@@ -3,6 +3,8 @@ body {
     color: #000000;
     background-image: url("../img/doodles.png");
     font-family: 'Fjord One', serif;
+    position: relative;
+    overflow-y: hidden;
 }
 
 h1 {
@@ -19,8 +21,8 @@ h2 {
     color: #000000;
 }
 
-button:focus {
-    outline:0 !important;
+button:focus{
+    outline: 0 !important;
 }
 
 .current-tasks {
@@ -54,9 +56,9 @@ button:focus {
 }
 
 .landing {
-    width: 85vh;
-    height: 85vh;
-    border-radius: 85vh;
+    width: 48vw;
+    height: 48vw;
+    border-radius: 48vw;
     background-color: rgba(255, 255, 255, 0.67);
     border: 15px solid rgba(0, 0, 0, 0.14);
     padding: 8%;
@@ -79,13 +81,17 @@ button:focus {
     margin-top: 13%;
 }
 
+.learn-more a {
+    color: #18bc9c;
+    cursor: pointer;
+}
+
 .input-group {
     width: 100%;
 }
 
 a {
-    color: black;
-    font-size: 16px;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -100,28 +106,62 @@ a:hover {
     border-color: black;
     border-radius: 0 0 10px 10px;
     margin-top: 0;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
- form#sign-in-form {
-    padding: 4% 5%;
-    background-color: rgba(114, 114, 114, 0.11);
+form#sign-in-form {
+    padding: 0;
+    background-color: rgb(255, 255, 255);
     width: 60%;
     margin: 0 auto;
-} 
+    -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
+}
 
 .boxindex{
     border: 0;
 }
 
+.form-title {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
 .form-control {
     height: 45px;
-    padding: 10px 15px;
+    padding: 0;
     font-size: 15px;
     line-height: 1.42857143;
-    color: #FFFFFF;
-    background-color: #727272;
-    border: 1px solid #979797;
-    border-radius: 4px;
+    color: #000000;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #979797;
+    border-radius: 0;
+    margin: 0 0 2% 0;
+}
+.form-group {
+    padding: 0 5% 2% 5%;
+    margin: 0;
+}
+
+.modal-form {
+    background-color: rgba(0, 0, 0, 0.13);
+    border: 0;
+    padding: 10px;
+}
+
+*/
+.form-group input[type=submit] {
+    margin: 5% 0 0 0;
 }
 
 #parameters2 {
@@ -190,6 +230,7 @@ a:hover {
 
 .back {
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .btn-default{
@@ -230,6 +271,19 @@ a:hover {
     background-color: #ffffff;
 /*    padding: 5%;*/
     margin: 5%;
+    -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
+    position: relative;
+    height: 85vh;
+}
+
+.blank-list-items-div {
+    width: 40%;
+    /* float: left; */
+    background-color: #ffffff;
+    /* padding: 5%; */
+    margin: 5% auto;
     -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
@@ -333,6 +387,21 @@ h4 {
 
 }
 
+.category-header h2{
+    text-align: center;
+    padding: 3% 0 2% 0;
+    margin-top: 0;
+}
+
+.view-all-btn {
+    display: block;
+    margin: -10px auto;
+    text-align: center;
+    background-color: rgb(0, 184, 255);
+    width: 100%;
+    border: 0;
+}
+
 .category-body {
     padding: 3% 10% 0 10%;
     overflow-y: auto;
@@ -341,6 +410,7 @@ h4 {
 
 li.list-item {
     padding: 5px 0;
+    font-size: 20px;
 }
 
 li.list-item:hover {
@@ -374,7 +444,11 @@ li.list-item.checked:before {
     background-image: url("../img/check-circle.png");
 }
 
-.this-task.checked {
+.this-task{
+    width: 99%;
+}
+
+.checked {
     text-decoration: line-through;
 }
 
@@ -393,6 +467,14 @@ li.list-item.checked:before {
     width: 15px;
     height: 15px;
     margin: 5px;
+}
+
+.add-first{
+    display: block;
+    margin: 5% auto 0 auto;
+    background-color: white;
+    border: 0;
+    color: #979797;
 }
 
 h5 {
@@ -444,7 +526,7 @@ h5 {
 }
 
 .logo {
-    padding-top: 20px;
+    padding: 5% 10% 0 10%;
 }
 
 .logo-landing {

@@ -71,11 +71,20 @@ $(function() {
 			        url: queryURL,
 			        method: "GET"
 			    }).done(function(res){
-			        res.results.sort(function(a, b) {
-			              return b.rating - a.rating;
-			        });
 			        
+			        function safeGet(obj) {
+					  if(obj) {
+					    return obj
+					  }else {
+					    return 0;
+					  }
+					}
+					res.results.sort(function(a, b) {
+			              return safeGet(b.rating) - safeGet(a.rating);
+			        });
+
 			        if(res.results.length > 0){
+			        	console.log(res.results)
 			        	$('#location-results').html('');
 				        $('#location-address').html('');
 				        $('#location-rating').html('');
@@ -83,7 +92,11 @@ $(function() {
 			        	res.results.forEach((result, index)=>{
 					        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
 					        $('#location-address').append(`Address: ${result.vicinity}`)
-					        $('#location-rating').append(`Rating: ${result.rating}`)
+					        if(result.rating){
+						        $('#location-rating').append(`Rating: ${result.rating}`);
+					        }else{
+						        $('#location-rating').append(`No Rating`);	
+					        }
 				        })
 						$('#myResultModal').modal('show');
 			        	console.log('we have action');
