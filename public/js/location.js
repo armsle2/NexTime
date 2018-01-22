@@ -1,11 +1,12 @@
-$(document).ready(function() {
+$(function() {
 	getItems();
 	let locations = {};
 
 	// This function grabs items from the database and updates the view
 	function getItems() {
-		console.log($('.user-page').data('id'))
-	    $.get("/api/user/:id/to-do", function(data) {
+		let currentUserID = $('.user-page').data('id');
+		console.log(currentUserID);
+	    $.get(`/api/user/${currentUserID}/to-do`, function(data) {
 	        getLocation();
 			function getLocation() {
 			    if (navigator.geolocation) {
@@ -16,53 +17,34 @@ $(document).ready(function() {
 			}
 
 			function showPosition(position) {
+				//if lat1 and lon1 don't exist write coordinates to them
 			    if(!locations.lat1 && !locations.lon1){
 			      locations.lat1 = position.coords.latitude;
 			      locations.lon1 = position.coords.longitude;
-			    }else if(!locations.lat2 && !locations.lon2){
-			      locations.lat2 = position.coords.latitude;
-			      locations.lon2 = position.coords.longitude;
-			    }else if(locations.lat2 && locations.lon2){
-			      locations.lat1 = locations.lat2;
-			      locations.lon1 = locations.lon2;
-			        locations.lat2 = position.coords.latitude;
-			      locations.lon2 = position.coords.longitude;   
+			    }else{
+			    	//write lat2 and lon2(old coordinates) as lat1 and lon1
+			      locations.lat2 = locations.lat1;
+			      locations.lon2 = locations.lon1;
+			      //write lat1 and lon1 as new coordinates
+			      locations.lat1 = position.coords.latitude;
+			      locations.lon1 = position.coords.longitude;   
 			    }
 			    console.log("Latitude 1: " + locations.lat1 + 
 			    "\nLongitude 1: " + locations.lon1 + "\nLatitude 2: " + 
 			    locations.lat2 + "\nLongitude 2: " + locations.lon2);
-
+			    //shorthand to make coordinates more manageable
 			    let lat1 = locations.lat1;
 			    let lon1 = locations.lon1;
 			    let lat2 = locations.lat2;
 			    let lon2 = locations.lon2;
-			    //testing with category type_name of first task but need to be able to run category type_name of multiple tasks if categories are different
-			    // let type = data[0].Category.type_name;
-			    // googleAPI(type, lat1, lon1);
+			    //distance function allows us to compare two coordinates and return the distance as a number which represents miles
 			    let positionDiff = distance(lat1, lon1, lat2, lon2)
-			    //below is a condtional for if the users new location (lat2,lon2) is more than 1 mile away from their first location (lat1,lon1)
-			    // if(positionDiff > 1){
-			    	let categoryTypeName = [];
-			    	//running loop based on user's tasks
-			    	data.forEach((results, index)=>{
-			    		let typeName = results.Category.type_name
-			    		function checkTypeArray(type){
-			    			return type != typeName;
-			    		}
-			    		//pushing the category type_name of users tasks to array only ONCE
-			    		if(categoryTypeName.every(checkTypeArray)){
-			    			categoryTypeName.push(typeName);
-			    		}
-			    	})
-			    	//if user categoryTypeName array is not empty then run google api
-			    			console.log(categoryTypeName);
-		    		if(categoryTypeName.length > 0){
-		    			categoryTypeName.forEach((results, index)=>{
-		    				//passing the actual category type_name to google api through 'results'
-						    googleAPI(results, lat2, lon2);
-		    			})
-		    		}
-			    // }   
+			    //below is a condtional for if the users new location (lat1,lon1) is more than 1 mile away from their old location (lat2,lon2)
+			    if(!lat2 && !lon2){
+			    	sendSearchToGoogle(data, lat1, lon1);
+			    }else if(positionDiff > 1){
+			    	sendSearchToGoogle(data, lat1, lon1);
+			    }   
 			}
 
 			function distance(lat1, lon1, lat2, lon2, unit) {
@@ -79,12 +61,11 @@ $(document).ready(function() {
 				return Math.floor(dist)
 			}
 
-			function googleAPI(typeName, lat, lon){
+			function googleAPI(type, typeName, lat, lon){
 
 			    let apiKey = "AIzaSyDku5hGYht2Deh0IIUDx0TEwx7uZH7llks";
-			    let type = typeName;
 			    let location = `${lat},${lon}`;
-			    let queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=4828&type=${type}&key=${apiKey}`;
+			    let queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=4828&type=${typeName}&key=${apiKey}`;
 
 			   $.ajax({
 			        url: queryURL,
@@ -93,19 +74,56 @@ $(document).ready(function() {
 			        res.results.sort(function(a, b) {
 			              return b.rating - a.rating;
 			        });
-			        $('#location-results').html('');
-			        $('#location-address').html('');
-			        $('#location-rating').html('');
-			        $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
-			        res.results.forEach((result, index)=>{
-			        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
-			        $('#location-address').append(`Address: ${result.vicinity}`)
-			        $('#location-rating').append(`Rating: ${result.rating}`)
-			        })
-					$('#myResultModal').modal('show');
+			        
+			        if(res.results.length > 0){
+			        	$('#location-results').html('');
+				        $('#location-address').html('');
+				        $('#location-rating').html('');
+				        $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
+			        	res.results.forEach((result, index)=>{
+					        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
+					        $('#location-address').append(`Address: ${result.vicinity}`)
+					        $('#location-rating').append(`Rating: ${result.rating}`)
+				        })
+						$('#myResultModal').modal('show');
+			        	console.log('we have action');
+			        }else{
+			        	console.log('no results')
+			        }
+			        
 
 			    });
 			};
+
+			function sendSearchToGoogle(data, lat1, lon1){
+				let categoryInfo = {
+		    		typeName: [],
+		    		type: []
+		    	};
+		    	//running loop based on user's tasks
+		    	console.log(data);
+		    	data.forEach((results, index)=>{
+		    		let categoryTypeName = results.Category.type_name;
+		    		let categoryName = results.Category.type;
+
+		    		if(!categoryInfo.typeName.includes(categoryTypeName)){
+		    			categoryInfo.typeName.push(categoryTypeName)
+		    		}
+		    		if(!categoryInfo.type.includes(categoryName)){
+		    			categoryInfo.type.push(categoryName)
+		    		}
+		    	})
+		    	//if user categoryTypeName array is not empty then run google api
+		    			console.log(categoryInfo);
+	    		if(categoryInfo.typeName.length > 0 && categoryInfo.type.length > 0 && lat1 && lon1){
+	    			categoryInfo.type.forEach((catType, index)=>{
+	    					console.log(catType);
+	    					let catTypeName = categoryInfo.typeName[index];
+	    				//passing category type, type_name, lat1, and lon1 to google
+					    googleAPI(catType, catTypeName, lat1, lon1);
+	    			})
+	    		}
+			}
 		});
 	}
 });
