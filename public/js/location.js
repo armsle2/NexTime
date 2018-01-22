@@ -86,18 +86,20 @@ $(function() {
 			        if(res.results.length > 0){
 			        	console.log(res.results)
 			        	$('#location-results').html('');
-				        $('#location-address').html('');
-				        $('#location-rating').html('');
 				        $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
 			        	res.results.forEach((result, index)=>{
-					        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
-					        $('#location-address').append(`Address: ${result.vicinity}`)
-					        if(result.rating){
-						        $('#location-rating').append(`Rating: ${result.rating}`);
-					        }else{
-						        $('#location-rating').append(`No Rating`);	
-					        }
-				        })
+					        var locationResults = $("<div>");
+	                        locationResults.addClass("resultBox");
+		                    var locationName = $("<p>").text(`${index+1}: \n Name: ${result.name}`)
+		                    var locationVicinity = $("<p>").text(`Address: ${result.vicinity}`)
+		                    var locationRating = $("<p>").text(`Rating: ${result.rating}`)
+		                    // var pagebreak = $("<br>");
+		                    locationResults.append(locationName);
+		                    locationResults.append(locationVicinity);
+		                    locationResults.append(locationRating);
+		                    // locationResults.append(pagebreak);
+		                    $('#location-results').append(locationResults);
+	                    })
 						$('#myResultModal').modal('show');
 			        	console.log('we have action');
 			        }else{
