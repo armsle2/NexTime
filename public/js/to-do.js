@@ -113,7 +113,7 @@ $(function() {
   		addTask.val(data.task);
         addBody.val(data.body);
         category.val(`${data.Category.id}`);
-        $('#edit-item').on('click', function(){
+        $('#update-item').on('click', function(){
         	let editedItem = {
         	taskID: taskID,
 	  		task: addTask.val().trim(),
