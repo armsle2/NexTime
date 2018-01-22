@@ -1,23 +1,25 @@
 body {
     background-color: #D8D8D8;
-    color: 000000;
+    color: #000000;
     background-image: url("../img/doodles.png");
     font-family: 'Fjord One', serif;
 }
 
 h1 {
-    font-family: 'Acme', sans-serif;
+/*    font-family: 'Acme', sans-serif;*/
     text-align: center;
     margin: 0;
     padding: 1%;
     color: #000000;
     font-size: 60px;
+    z-index: 20;
 }
 
 h2 {
     color: #000000;
 }
-button {
+
+button:focus {
     outline: none;
 }
 
@@ -52,16 +54,31 @@ button {
 }
 
 .landing {
-    padding: 25%;
+    /* padding: 25%; */
+    width: 85vh;
+    height: 85vh;
+    border-radius: 85vh;
+    background-color: rgba(255, 255, 255, 0.67);
+    border: 15px solid rgba(0, 0, 0, 0.14);
+    padding: 15%;
+    margin: 5% auto;
 }
 
-.userContainer {
-    text-align: center;
+.landing-content {
+    margin: 10vh 0;
+}
+
+.landing-btn {
+    display: block;
+    margin: 10px auto;
     padding: 2%;
+    border-radius: 50px;
 }
 
-.btn-success {
-    border-radius: 50px;
+.learn-more{
+    position: absolute;
+    bottom: 1%;
+    margin: 0 auto;
 }
 
 .input-group {
@@ -122,9 +139,9 @@ a:hover {
     position: relative;
 }
 
-.btn {
+/*.btn {
     padding: 0;
- }
+ }*/
 
 .btn-danger {
 /*    position: absolute;
@@ -258,7 +275,7 @@ a:hover {
 
 h3 {
     text-align: center;
-    margin: 0;
+    margin: -8px 0 0 0;
     font-family: 'Fjord One', serif;
 }
 
@@ -311,7 +328,7 @@ h4 {
 }
 
 .category-header {
-    height: 100px;
+    height: 120px;
     -webkit-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
     box-shadow: 3px 3px 32px -9px rgba(0,0,0,0.75);
@@ -428,18 +445,38 @@ h5 {
     z-index: 5;
 }
 
+.logo {
+    padding-top: 20px;
+}
+
+.logo-landing {
+    margin-bottom: 15px;
+}
+
+.logo-text{
+    font-family: 'Acme', sans-serif;
+    text-align: left;
+    letter-spacing: -2px;
+}
+
+.nex{
+    color: #18bc9c;
+}
+
 .clock {
     width: 100px;
     height: 100px;
     background-color: rgba(255, 255, 255, 0.75);
-    border: 8px solid rgba(53, 53, 53, 0.48);
+    border: 8px solid rgb(0, 0, 0);
     border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: -153px 0 0 -149px;
-    z-index: 1;
+    position: relative;
+    /* left: 50%; */
+    /* top: 50%; */
+    /* margin: -153px 0 0 -149px; */
+    /* z-index: 1; */
     display: block;
+    margin: -20px 0px;
+    float: left;
 }
 
 .clock:before, .clock:after {
@@ -447,7 +484,7 @@ h5 {
     position: absolute;
     height: 128px;
     width: 8px;
-    background: rgba(53, 53, 53, 0.48);
+    background: rgba(24, 188, 156, 0.70);
     border-radius: 4px;
     left: 50%;
     bottom: 38px;
@@ -456,7 +493,8 @@ h5 {
     animation-name: Clock;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    box-shadow: 0 16px 0px rgba(255, 255, 255, 0.75);
+    box-shadow: 0 5px 0px rgba(24, 188, 156, 0.5);
+    z-index: 2;
 }
 
 .clock:before {
