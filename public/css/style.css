@@ -691,3 +691,8 @@ button.panel{
 .panel{
     background-color: #d8d8d8;
 }
+
+.username-taken{
+    color: red;
+    text-align: center;
+}

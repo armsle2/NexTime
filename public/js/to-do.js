@@ -35,9 +35,22 @@ $(function() {
       });
     }
       if(newUser.firstName && newUser.username && newUser.password){
-        $.post('/api/users', newUser, function(data){
-          window.location.href = `/user/${data.id}/to-do`;
-        })
+        $.get('/api/users', function(data){
+          function checkUsers(user){
+            return user.username === newUser.username;
+          }
+           let userMatch = data.find(checkUsers);
+           if(userMatch){
+              $('.username-taken').html(`<p>Username not available</p>`);
+              $(`#username-sign-up`).addClass('shake').one(animationEnd, function(){
+                $(this).removeClass('shake');
+              });
+           }else{
+              $.post('/api/users', newUser, function(data){
+                window.location.href = `/user/${data.id}/to-do`;
+              })
+           }
+        });
       }
 	});
 
@@ -51,7 +64,6 @@ $(function() {
         return user.username === username;
       }
        let userMatch = data.find(checkUsers);
-       // let passwordMatch = data.find(checkUsers);
        if(userMatch){
           if (userMatch.password === password) {
             window.location.href = `/user/${userMatch.id}/to-do`;
