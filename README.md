@@ -5,7 +5,7 @@ Leaveil Armstrong, Lisa Ewart, Taly Huang, and Janessa Hanna
 
 ## Concept:
 
-You have just battled Atlanta traffic and now you are finally home.  Oops -- you forgot to pick up the main ingrediant you need for the dinner you are making.  The last thing you want to do is go back out.  Sign up for the NexTime app, and next time you will not have to go back out because next time you won't forget!  
+You have just battled Atlanta traffic and now you are finally home.  Oops -- you forgot to pick up the main ingredient you need for the dinner you are making.  The last thing you want to do is go back out.  Sign up for the NexTime app, and next time you will not have to go back out because next time you won't forget!  
 
 NexTime is the future of the to-do list.  It is a smart to-do list that will revolutionize the way we write to-lists and complete tasks. NexTime provides the user with a sleek and user-friendly interface in which the user can compile all tasks.  While the user is on the move, NexTime will periodically identify the user’s location and send an alert when the user is within a certain distance of a place where an item on the to-list can be completed.  
 
@@ -14,7 +14,7 @@ NexTime’s task list is interactive, providing the user with multiple fields to
 ## Technology Overview:
 This application employs a variety of technologies, including:  Node.js, Handlebars, MySQL, HTML5 Geolocation, Bootstrap, Sequelize, Express, CSS, Javascript, HTML, JQuery, modals, and the Google Places API.
 
-Within MySQL, the application accesses one database with three separate tables.  The application employs a CRUD format to provide the user with various interactions with the  database.  
+Within MySQL, the application accesses one database with three separate tables.  The application employs a CRUD format to provide the user with various interactions with the database.  
 
 The application uses HTML Geolocation using the .watchPosition method to determine the location of the user.  Once the application detects that the user has moved or is in a new location, the application uses the category information associated with specific tasks and the location of the user to run an AJax call to the Google Places API.  The NexTime application then returns the top five options in the area where a user can complete one or more to-do items on their list. The user is alerted using modal technology.  
 
@@ -34,7 +34,7 @@ Once NexTime identifies places of business in the area where a user can complete
 
 This application has limitless potential, and the team has started brainstorming ideas for future development.  Potential areas for future development include:
 
-* User manipulated radius for  location notification.
+* User manipulated radius for location notification.
 * Google Maps integration.
 * Ability for user to insert specific locations that user would like to visit in the future.
 * Ability for user to click on a location and add to NexTime list.
