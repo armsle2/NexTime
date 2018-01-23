@@ -100,7 +100,7 @@ $(function() {
 			                    let resultLat = result.geometry.location.lat;
 			                    let resultLon = result.geometry.location.lng;
 			                    let mileageDistance = distance(lat, lon, resultLat, resultLon);
-			                    let distanceRes = $("<p>").text(`Distance: ${mileageDistance} miles`);
+			                    let distanceRes = $("<p>").text(`Distance: ${mileageDistance} mi`);
 			        			specificResult.append(locationName);
 			        			specificResult.append(locationVicinity);
 			        			specificResult.append(locationRating);
