@@ -67,8 +67,8 @@ $(function() {
 			        url: queryURL,
 			        method: "GET"
 			    }).done(function(res){
+			    	//keep this console log to know if you have exceeded daily requests
 				    console.log(res)
-			        
 			        function safeGet(obj) {
 					  if(obj) {
 					    return obj
@@ -88,9 +88,6 @@ $(function() {
 	        			
 	        			locationResultsDiv.append(button);
 				        $('.panel-group').append(locationResultsDiv);
-				        if(!res.results){
-				        	return false;
-				        }
 			        	res.results.forEach((result, index)=>{
 			        		if(index < 5){
 			        			if(!result.rating){
@@ -142,10 +139,7 @@ $(function() {
 	    				//passing category type, type_name, lat1, and lon1 to google
 					    googleAPI(catType, catTypeName, lat1, lon1);
 	    			})
-	    			if(googleAPI()){
 						$('#myResultModal').modal('show');
-	    			}
-
 	    		}
 			}
 		});
