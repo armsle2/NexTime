@@ -85,20 +85,49 @@ $(function() {
 
 			        if(res.results.length > 0){
 			        	console.log(res.results)
-			        	$('#location-results').html('');
-				        $('#location-address').html('');
-				        $('#location-rating').html('');
-				        $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
+			        	// $('#location-results').html('');
+				        // $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
+	        			let locationResultsDiv = $("<div>");
+	        			let locationResults = $(`<div id="demo${typeName}" class="collapse">`);
+	        			let button = $(`<button class="panel panel-default panel-heading" data-toggle="collapse" data-target="#demo${typeName}">`);
+	        			button.append(`Places for your ${type} list`);
+	        			
+	        			locationResultsDiv.append(button);
+				        $('.panel-group').append(locationResultsDiv);
 			        	res.results.forEach((result, index)=>{
-					        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
-					        $('#location-address').append(`Address: ${result.vicinity}`)
-					        if(result.rating){
-						        $('#location-rating').append(`Rating: ${result.rating}`);
-					        }else{
-						        $('#location-rating').append(`No Rating`);	
-					        }
-				        })
-						$('#myResultModal').modal('show');
+			        		if(index < 5){
+			        			if(!result.rating){
+			        				result.rating = `No Rating`;
+			        			}
+		                        let specificResult = $(`<div>`);
+		                        specificResult.addClass("resultBox");
+			        			let locationName = $("<p>").text(`${index+1}: \n Name: ${result.name}`);
+			                    let locationVicinity = $("<p>").text(`Address: ${result.vicinity}`);
+			                    let locationRating = $("<p>").text(`Rating: ${result.rating}`);
+			                    let resultLat = result.geometry.location.lat;
+			                    let resultLon = result.geometry.location.lng;
+			                    let mileageDistance = distance(lat, lon, resultLat, resultLon);
+			                    let distanceRes = $("<p>").text(`Distance: ${mileageDistance} miles`);
+
+			        			specificResult.append(locationName);
+			        			specificResult.append(locationVicinity);
+			        			specificResult.append(locationRating);
+			        			specificResult.append(distanceRes);
+			        			locationResults.append(specificResult)
+	        			locationResultsDiv.append(locationResults);
+
+
+			        			// var locationResults = $("<div>");
+			                    
+			                    // var pagebreak = $("<br>");
+			                    // locationResults.append(locationName);
+			                    // locationResults.append(locationVicinity);
+			                    // locationResults.append(locationRating);
+			                    // // locationResults.append(pagebreak);
+			                    // $('#location-results').append(locationResults);
+			        		}
+					        
+	                    })
 			        	console.log('we have action');
 			        }else{
 			        	console.log('no results')
@@ -135,6 +164,8 @@ $(function() {
 	    				//passing category type, type_name, lat1, and lon1 to google
 					    googleAPI(catType, catTypeName, lat1, lon1);
 	    			})
+						$('#myResultModal').modal('show');
+
 	    		}
 			}
 		});
