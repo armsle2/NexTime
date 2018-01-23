@@ -20,27 +20,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add New Task</h4>
+        <h2 class="form-title" id="myModalLabel">Add New Task</h2>
         <p id="missing-data" style="color: red;"></p>
       </div>
       <div class="modal-body">
             <form id="addItem" data-id="{{userID}}">
                 <div class="form-group">
                     <label for="task">Task Name:</label>
-                    <input type="text" class="form-control" id="task">
-                    <br />
-                    <div class="form-group">
-                        <label for="category">Select Category:</label>
-                        <select class="form-control" id="category">
-                            <option value="">Choose A Category</option>
-                            {{#each allCategories}}
-                            <option value="{{this.id}}">{{this.type}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <br />
+                    <input type="text" class="form-control modal-form" id="task">
+                    <label for="category">Select Category:</label>
+                    <select class="form-control modal-form" id="category">
+                      <option value="">Choose one...</option>
+                      {{#each allCategories}}
+                      <option value="{{this.id}}">{{this.type}}</option>
+                      {{/each}}
+                    </select>
                     <label for="body">Notes</label>
-                    <textarea class="form-control" rows="10" id="body"></textarea>
+                    <textarea class="form-control modal-form" rows="10" id="body"></textarea>
                     <br />
                 </div>
             </form>
