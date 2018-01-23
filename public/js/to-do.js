@@ -10,20 +10,38 @@ $(function() {
 	$('#submit-sign-up').on('click', function(event){
 		event.preventDefault();
 		let firstName = $("#first-name-sign-up");
-	    let lastName = $("#last-name-sign-up");
-	    let userName = $("#username-sign-up");
-	    let password = $('#password-sign-up');
-	  	let newUser = {
-	  		firstName: firstName.val().trim(),
-	        lastName: lastName.val().trim(),
-	        username: userName.val().toLowerCase().trim(),
-	        password: password.val().trim()
-	  	}
-	  	console.log(newUser)
-		$.post('/api/users', newUser, function(data){
-			console.log(data);
-			window.location.href = `/user/${data.id}/to-do`;
-		})
+    let lastName = $("#last-name-sign-up");
+    let userName = $("#username-sign-up");
+    let password = $('#password-sign-up');
+  	let newUser = {
+  		firstName: firstName.val().trim(),
+      lastName: lastName.val().trim(),
+      username: userName.val().toLowerCase().trim(),
+      password: password.val().trim()
+  	}
+    if(newUser.firstName === ''){
+      $(`#first-name-sign-up`).addClass('shake').one(animationEnd, function(){
+        $(this).removeClass('shake');
+      });
+    } 
+    if(newUser.username === ''){
+      $(`#username-sign-up`).addClass('shake').one(animationEnd, function(){
+        $(this).removeClass('shake');
+      });
+    } 
+    if(newUser.password === ''){
+      $(`#password-sign-up`).addClass('shake').one(animationEnd, function(){
+        $(this).removeClass('shake');
+      });
+    }
+      console.log(newUser)
+      if(newUser.firstName && newUser.username && newUser.password){
+        $.post('/api/users', newUser, function(data){
+          console.log(data);
+          window.location.href = `/user/${data.id}/to-do`;
+        })
+      }
+		
 	});
 
   //sign-in click handler
