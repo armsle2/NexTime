@@ -5,7 +5,7 @@
               <div class="user-clock"></div>
               <h1 class="user-logo-text"><span class="nex">Nex</span>Time</h1>
           </div>
-          <h3>Welcome <span id="user-name">{{userName}}</span></h3>
+          <h3>Welcome <span id="user-name">{{userName}}!</span></h3>
         </div>
             
         <div class="category-body">
@@ -26,7 +26,7 @@
             <h2>{{currentStatus}}</h2>
 
             {{#if viewAllItems}}
-            <a href="/user/{{userID}}/to-do"><button>View All Items</button></a>
+            <a href="/user/{{userID}}/to-do"><button class="view-all-btn">View All Items</button></a>
             {{else}}
             {{/if}}
 
@@ -42,8 +42,8 @@
                   </span>
 
                   <span class="edit-delete">
-                    <img src="/../img/edit.svg" class="edit-button" data-toggle="modal" data-target="#myEditModal"/>
-                    <img src="/../img/delete.svg" class="item-delete" data-id="{{this.id}}"/>
+                    <img title="Detail View" alt="Detail View" src="/../img/dots.svg" class="edit-button" data-toggle="modal" data-target="#myEditModal"/>
+                    <img alt="Delete Item" title="Delete Item" src="/../img/delete.svg" class="item-delete" data-id="{{this.id}}"/>
                   <span>
 
                 </li>
@@ -64,28 +64,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add New Task</h4>
+        <h2 class="form-title" id="myModalLabel">Add New Task</h2>
         <p id="missing-data" style="color: red;"></p>
       </div>
       <div class="modal-body">
             <form id="addItem" data-id="{{userID}}">
                 <div class="form-group">
                     <label for="task">Task Name:</label>
-                    <input type="text" class="form-control" id="task">
-                    <br />
-                    <div class="form-group">
-                        <label for="category">Select Category:</label>
-                        <select class="form-control" id="category">
-                            <option value="">Choose A Category</option>
-                            {{#each allCategories}}
-                            <option value="{{this.id}}">{{this.type}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <br />
+                    <input type="text" class="form-control modal-form" id="task">
+                    <label for="category">Select Category:</label>
+                    <select class="form-control modal-form" id="category">
+                        <option value="" selected>Choose one...</option>
+                        {{#each allCategories}}
+                        <option value="{{this.id}}">{{this.type}}</option>
+                        {{/each}}
+                    </select>
                     <label for="body">Notes</label>
-                    <textarea class="form-control" rows="10" id="body"></textarea>
-                    <br />
+                    <textarea class="form-control modal-form" rows="10" id="body"></textarea>
                 </div>
             </form>
       </div>
@@ -102,33 +97,28 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Update Current Task</h4>
+        <h2 class="form-title" id="myModalLabel">Update Current Task</h2>
         <p id="missing-edit-data" style="color: red;"></p>
       </div>
       <div class="modal-body">
             <form id="addItem">
                 <div class="form-group">
                     <label for="task">Task Name:</label>
-                    <input type="text" class="form-control" id="task-edit">
-                    <br />
-                    <div class="form-group">
-                        <label for="category">Select Category:</label>
-                        <select class="form-control" id="category-edit">
-                            <option value="">Choose A Category</option>
-                            {{#each allCategories}}
-                            <option value="{{this.id}}">{{this.type}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <br />
+                    <input type="text" class="form-control modal-form" id="task-edit">
+                    <label for="category">Select Category:</label>
+                    <select class="form-control modal-form" id="category-edit">
+                        <option value="">Choose one...</option>
+                        {{#each allCategories}}
+                        <option value="{{this.id}}">{{this.type}}</option>
+                        {{/each}}
+                    </select>
                     <label for="body">Notes</label>
-                    <textarea class="form-control" rows="10" id="body-edit"></textarea>
-                    <br />
+                    <textarea class="form-control modal-form" rows="10" id="body-edit"></textarea>
                 </div>
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "edit-item" data-dismiss="">Update</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block submit" id= "update-item" data-dismiss="">Update</button>
       </div>
     </div>
   </div>
@@ -140,17 +130,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridSystemModalLabel">Near By</h4>
+        <h3 class="modal-title" id="gridSystemModalLabel">Nearby Places</h3>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-4">Relative Distance</div>
-          <div class="col-md-8">
-            <h3>Results</h3>
-            <div id="location-results"></div>
-            <div id="location-name"></div>
-            <div id="location-address"></div>
-            <div id="location-rating"></div>
+          <div class="col-md-12">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            </div>
           </div>
         </div>
       </div>

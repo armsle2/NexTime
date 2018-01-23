@@ -45,7 +45,7 @@ module.exports = function(app) {
           let userInfo = {
             tasks: tasks,
             categories: currentCategories,
-            currentStatus: `Your List`,
+            currentStatus: `All Items`,
             userName: tasks[0].User.firstName,
             userID: currentUserID,
             allCategories: allCategories
@@ -85,8 +85,9 @@ module.exports = function(app) {
       include: [db.Category, db.User]
     }).then(function(tasks){
       db.Category.findAll().then(function(allCategories){
+
         let currentCategories = [];
-        let currentCategoryItems = [];
+        let currentCategoryItems = [];         
         //running loop based on user's tasks
         tasks.forEach((results, index)=>{
           let categoryID = results.Category.id;
@@ -101,19 +102,23 @@ module.exports = function(app) {
           if(results.CategoryId == req.params.catId){
             currentCategoryItems.push(results);
           }
+          
         });
-        console.log(currentCategories);
-        let userItemInfo = {
-          tasks: currentCategoryItems,
-          categories: currentCategories,
-          currentStatus: `Your ${currentCategoryItems[0].category} List`,
-          viewAllItems: true,
-          userID: req.params.id,
-          allCategories: allCategories,
-          userName: tasks[0].User.firstName
+        console.log(currentCategoryItems);
+        if(currentCategoryItems.length < 1){
+          res.redirect(`/user/${req.params.id}/to-do`)
+        }else{
+          let userItemInfo = {
+            tasks: currentCategoryItems,
+            categories: currentCategories,
+            currentStatus: `Your ${currentCategoryItems[0].category} List`,
+            viewAllItems: true,
+            userID: req.params.id,
+            allCategories: allCategories,
+            userName: tasks[0].User.firstName
+          }
+          res.render('to-do', userItemInfo)
         }
-        res.render('to-do', userItemInfo)
-      // res.json(tasks)
       })
     })
 
