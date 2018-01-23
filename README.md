@@ -12,7 +12,7 @@ NexTime is the future of the to-do list.  It is a smart to-do list that will rev
 NexTime’s task list is interactive, providing the user with multiple fields to detail daily tasks and multiple ways in which to view tasks. It is the perfect tool for anyone who wants to be organized and efficient!  
 
 ## Technology Overview:
-This application employs a variety of technologies, including:  Node.js, Handlebars, MySQL, HTML5 Geolocation, Bootstrap, Sequelize, Express, CSS, Javascript, HTML, JQuery, modals, and the Google Places API.
+This application employs a variety of technologies, including:  Node.js, Handlebars, MySQL, HTML5 Geolocation, Bootstrap, Sequelize, Express, CSS, Javascript, HTML, JQuery, modals, Animate.css, and the Google Places API.
 
 Within MySQL, the application accesses one database with three separate tables.  The application employs a CRUD format to provide the user with various interactions with the database.  
 
