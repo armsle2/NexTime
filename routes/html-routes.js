@@ -26,7 +26,6 @@ module.exports = function(app) {
       include: [db.Category, db.User]
     }).then(function(tasks){
       if(tasks.length > 0){
-        console.log('we got something')
         db.Category.findAll().then(function(allCategories){
 
           let currentCategories = [];
@@ -48,9 +47,17 @@ module.exports = function(app) {
             currentStatus: `All Items`,
             userName: tasks[0].User.firstName,
             userID: currentUserID,
-            allCategories: allCategories
+            allCategories: allCategories,
+            animation: true,
+            animation2: true
           }
+          // if(tasks.length > 1){
+          //   userInfo.animation = false
+          //   userInfo.animation2 = false
+          // }
           res.render('to-do', userInfo)
+            // userInfo.animation = false
+            // userInfo.animation2 = false          
 
         })
       }else{
@@ -115,7 +122,8 @@ module.exports = function(app) {
             viewAllItems: true,
             userID: req.params.id,
             allCategories: allCategories,
-            userName: tasks[0].User.firstName
+            userName: tasks[0].User.firstName,
+            animation2: true
           }
           res.render('to-do', userItemInfo)
         }

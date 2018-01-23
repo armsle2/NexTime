@@ -1,5 +1,9 @@
 <div class="container-fluid user-page" data-id="{{userID}}">
+    {{#if animation}}
+    <div class="category-div animated slideInLeft">
+        {{else}}
     <div class="category-div">
+        {{/if}}
         <div class="category-header">
           <div class="logo">
               <div class="user-clock"></div>
@@ -20,8 +24,11 @@
           {{/each}}
         </div>
     </div>
-
+        {{#if animation2}}
+    <div class="list-items-div animated slideInRight">
+        {{else}}
     <div class="list-items-div">
+        {{/if}}
         <div class="category-header">
             <h2>{{currentStatus}}</h2>
 
