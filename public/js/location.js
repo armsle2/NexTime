@@ -1,11 +1,10 @@
 $(function() {
-	getItems();
+	setTimeout(getItems, 10000)
 	let locations = {};
 
 	// This function grabs items from the database and updates the view
 	function getItems() {
 		let currentUserID = $('.user-page').data('id');
-		console.log(currentUserID);
 	    $.get(`/api/user/${currentUserID}/to-do`, function(data) {
 	        getLocation();
 			function getLocation() {
@@ -29,9 +28,6 @@ $(function() {
 			      locations.lat1 = position.coords.latitude;
 			      locations.lon1 = position.coords.longitude;   
 			    }
-			    console.log("Latitude 1: " + locations.lat1 + 
-			    "\nLongitude 1: " + locations.lon1 + "\nLatitude 2: " + 
-			    locations.lat2 + "\nLongitude 2: " + locations.lon2);
 			    //shorthand to make coordinates more manageable
 			    let lat1 = locations.lat1;
 			    let lon1 = locations.lon1;
@@ -84,9 +80,6 @@ $(function() {
 			        });
 
 			        if(res.results.length > 0){
-			        	console.log(res.results)
-			        	// $('#location-results').html('');
-				        // $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
 	        			let locationResultsDiv = $("<div>");
 	        			let locationResults = $(`<div id="demo${typeName}" class="collapse">`);
 	        			let button = $(`<button class="panel panel-default panel-heading" data-toggle="collapse" data-target="#demo${typeName}">`);
@@ -108,32 +101,16 @@ $(function() {
 			                    let resultLon = result.geometry.location.lng;
 			                    let mileageDistance = distance(lat, lon, resultLat, resultLon);
 			                    let distanceRes = $("<p>").text(`Distance: ${mileageDistance} miles`);
-
 			        			specificResult.append(locationName);
 			        			specificResult.append(locationVicinity);
 			        			specificResult.append(locationRating);
 			        			specificResult.append(distanceRes);
 			        			locationResults.append(specificResult)
-	        			locationResultsDiv.append(locationResults);
-
-
-			        			// var locationResults = $("<div>");
-			                    
-			                    // var pagebreak = $("<br>");
-			                    // locationResults.append(locationName);
-			                    // locationResults.append(locationVicinity);
-			                    // locationResults.append(locationRating);
-			                    // // locationResults.append(pagebreak);
-			                    // $('#location-results').append(locationResults);
+			        			locationResultsDiv.append(locationResults);
 			        		}
 					        
 	                    })
-			        	console.log('we have action');
-			        }else{
-			        	console.log('no results')
 			        }
-			        
-
 			    });
 			};
 
@@ -143,7 +120,6 @@ $(function() {
 		    		type: []
 		    	};
 		    	//running loop based on user's tasks
-		    	console.log(data);
 		    	data.forEach((results, index)=>{
 		    		let categoryTypeName = results.Category.type_name;
 		    		let categoryName = results.Category.type;
@@ -156,10 +132,8 @@ $(function() {
 		    		}
 		    	})
 		    	//if user categoryTypeName array is not empty then run google api
-		    			console.log(categoryInfo);
 	    		if(categoryInfo.typeName.length > 0 && categoryInfo.type.length > 0 && lat1 && lon1){
 	    			categoryInfo.type.forEach((catType, index)=>{
-	    					console.log(catType);
 	    					let catTypeName = categoryInfo.typeName[index];
 	    				//passing category type, type_name, lat1, and lon1 to google
 					    googleAPI(catType, catTypeName, lat1, lon1);
