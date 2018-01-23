@@ -1,11 +1,10 @@
 $(function() {
-	getItems();
+	setTimeout(getItems, 10000)
 	let locations = {};
 
 	// This function grabs items from the database and updates the view
 	function getItems() {
 		let currentUserID = $('.user-page').data('id');
-		console.log(currentUserID);
 	    $.get(`/api/user/${currentUserID}/to-do`, function(data) {
 	        getLocation();
 			function getLocation() {
@@ -29,9 +28,6 @@ $(function() {
 			      locations.lat1 = position.coords.latitude;
 			      locations.lon1 = position.coords.longitude;   
 			    }
-			    console.log("Latitude 1: " + locations.lat1 + 
-			    "\nLongitude 1: " + locations.lon1 + "\nLatitude 2: " + 
-			    locations.lat2 + "\nLongitude 2: " + locations.lon2);
 			    //shorthand to make coordinates more manageable
 			    let lat1 = locations.lat1;
 			    let lon1 = locations.lon1;
@@ -71,27 +67,50 @@ $(function() {
 			        url: queryURL,
 			        method: "GET"
 			    }).done(function(res){
-			        res.results.sort(function(a, b) {
-			              return b.rating - a.rating;
+			        
+			        function safeGet(obj) {
+					  if(obj) {
+					    return obj
+					  }else {
+					    return 0;
+					  }
+					}
+					res.results.sort(function(a, b) {
+			              return safeGet(b.rating) - safeGet(a.rating);
 			        });
-			        
-			        if(res.results.length > 0){
-			        	$('#location-results').html('');
-				        $('#location-address').html('');
-				        $('#location-rating').html('');
-				        $('#location-results').append(`Nearby Places To Take Care Of Your ${type} List`);
-			        	res.results.forEach((result, index)=>{
-					        $('#location-name').append(`${index+1}: \n Name: ${result.name}`);
-					        $('#location-address').append(`Address: ${result.vicinity}`)
-					        $('#location-rating').append(`Rating: ${result.rating}`)
-				        })
-						$('#myResultModal').modal('show');
-			        	console.log('we have action');
-			        }else{
-			        	console.log('no results')
-			        }
-			        
 
+			        if(res.results.length > 0){
+	        			let locationResultsDiv = $("<div>");
+	        			let locationResults = $(`<div id="demo${typeName}" class="collapse">`);
+	        			let button = $(`<button class="panel panel-default panel-heading" data-toggle="collapse" data-target="#demo${typeName}">`);
+	        			button.append(`Places for your ${type} list`);
+	        			
+	        			locationResultsDiv.append(button);
+				        $('.panel-group').append(locationResultsDiv);
+			        	res.results.forEach((result, index)=>{
+			        		if(index < 5){
+			        			if(!result.rating){
+			        				result.rating = `No Rating`;
+			        			}
+		                        let specificResult = $(`<div>`);
+		                        specificResult.addClass("resultBox");
+			        			let locationName = $("<p>").text(`${index+1}: \n Name: ${result.name}`);
+			                    let locationVicinity = $("<p>").text(`Address: ${result.vicinity}`);
+			                    let locationRating = $("<p>").text(`Rating: ${result.rating}`);
+			                    let resultLat = result.geometry.location.lat;
+			                    let resultLon = result.geometry.location.lng;
+			                    let mileageDistance = distance(lat, lon, resultLat, resultLon);
+			                    let distanceRes = $("<p>").text(`Distance: ${mileageDistance} miles`);
+			        			specificResult.append(locationName);
+			        			specificResult.append(locationVicinity);
+			        			specificResult.append(locationRating);
+			        			specificResult.append(distanceRes);
+			        			locationResults.append(specificResult)
+			        			locationResultsDiv.append(locationResults);
+			        		}
+					        
+	                    })
+			        }
 			    });
 			};
 
@@ -101,7 +120,6 @@ $(function() {
 		    		type: []
 		    	};
 		    	//running loop based on user's tasks
-		    	console.log(data);
 		    	data.forEach((results, index)=>{
 		    		let categoryTypeName = results.Category.type_name;
 		    		let categoryName = results.Category.type;
@@ -114,14 +132,14 @@ $(function() {
 		    		}
 		    	})
 		    	//if user categoryTypeName array is not empty then run google api
-		    			console.log(categoryInfo);
 	    		if(categoryInfo.typeName.length > 0 && categoryInfo.type.length > 0 && lat1 && lon1){
 	    			categoryInfo.type.forEach((catType, index)=>{
-	    					console.log(catType);
 	    					let catTypeName = categoryInfo.typeName[index];
 	    				//passing category type, type_name, lat1, and lon1 to google
 					    googleAPI(catType, catTypeName, lat1, lon1);
 	    			})
+						$('#myResultModal').modal('show');
+
 	    		}
 			}
 		});

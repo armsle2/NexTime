@@ -1,9 +1,3 @@
-INSERT INTO Users(firstName, lastName, username, password)
-VALUES ('Bob', 'James', 'bobby-j', 'password'),
-('cam', 'newton', 'cameraman', ''),
-('cam', 'houser', 'cameraboy', ''),
-('cam', 'grey', 'camguy', '');
-
 INSERT INTO Categories(type, type_name)
 VALUES ('Groceries', 'grocery_or_supermarket'),
 ('Pharmacy', 'pharmacy'),
@@ -17,9 +11,3 @@ VALUES ('Groceries', 'grocery_or_supermarket'),
 ('Bakery', 'bakery'),
 ('Laundry', 'laundry'),
 ('Spirits', 'liquor_store');
-
-
-INSERT INTO Items(task, body, category, CategoryId, UserId)
-VALUES ('Grocery Shopping', 'need onions!', 'Groceries', 1, 1),
-('food', 'eat it', 'Groceries', 1, 1),
-('clean', 'take clothes', 'Dry Cleaner', 4, 1);
