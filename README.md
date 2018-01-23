@@ -20,7 +20,7 @@ The application uses HTML Geolocation using the .watchPosition method to determi
 
 ## Instructions:  
 
-The application can be viewed at this website:  [Enter Heroku website].
+The application can be viewed at this website:  https://hidden-oasis-18453.herokuapp.com/.
 
 Upon entering the application, first time users are asked to create a new user and returning users are asked to provide their log-in credentials.  
 
