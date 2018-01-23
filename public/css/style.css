@@ -521,6 +521,45 @@ h5 {
     background: -moz-linear-gradient(top, rgba(170,186,250,1) 0%, rgba(51,77,222,1) 100%);
 }
 
+.hardware_store{ 
+    background: rgba(171,191,199,1);
+    background: -webkit-linear-gradient(rgba(171,191,199,1) 0%, rgba(1,138,201,1) 100%);
+    background: -moz-linear-gradient(rgba(171,191,199,1) 0%, rgba(1,138,201,1) 100%);
+
+ }
+.car_wash{ 
+    background: rgba(153,222,175,1);
+    background: -webkit-linear-gradient(top, rgba(153,222,175,1) 0%, rgba(73,189,73,1) 100%);
+    background: -moz-linear-gradient(top, rgba(153,222,175,1) 0%, rgba(73,189,73,1) 100%);
+
+ }
+.florist{ 
+    background: rgba(222,149,161,1);
+    background: -webkit-linear-gradient(top, rgba(222,149,161,1) 0%, rgba(189,73,102,1) 100%);
+    background: -moz-linear-gradient(top, rgba(222,149,161,1) 0%, rgba(189,73,102,1) 100%);
+
+ }
+.bakery{ 
+    background: rgba(202,151,222,1);
+    background: -webkit-linear-gradient(top, rgba(202,151,222,1) 0%, rgba(114,73,189,1) 100%);
+    background: -moz-linear-gradient(top, rgba(202,151,222,1) 0%, rgba(114,73,189,1) 100%);
+
+ }
+.laundry{ 
+    background: rgba(250,183,100,1);
+    background: -webkit-linear-gradient(top, rgba(250,183,100,1) 0%, rgba(222,82,17,1) 100%);
+    background: -moz-linear-gradient(top, rgba(250,183,100,1) 0%, rgba(222,82,17,1) 100%);
+
+ }
+.liquor_store{ 
+    background: rgba(170,186,250,1);
+    background: -webkit-linear-gradient(top, rgba(170,186,250,1) 0%, rgba(51,77,222,1) 100%);
+    background: -moz-linear-gradient(top, rgba(170,186,250,1) 0%, rgba(51,77,222,1) 100%);
+ }
+
+
+
+
 /*css clock*/
 .col-sm-12 {
     z-index: 5;
