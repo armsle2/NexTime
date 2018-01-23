@@ -44,3 +44,4 @@ This application has limitless potential, and the team has started brainstorming
 * Mobile platform with direct mobile notifications.
 * Smart technology that makes suggestions based on user preferences determined from user habits. 
 
+
