@@ -18,7 +18,7 @@ Within MySQL, the application accesses one database with three separate tables. 
 
 The application uses HTML Geolocation using the .watchPosition method to determine the location of the user.  Once the application detects that the user has moved or is in a new location, the application uses the category information associated with specific tasks and the location of the user to run an AJax call to the Google Places API.  The NexTime application then returns the top five options in the area where a user can complete one or more to-do items on their list. The user is alerted using modal technology.  
 
-##Instructions:
+## Instructions:  
 
 The application can be viewed at this website:  [Enter Heroku website].
 
