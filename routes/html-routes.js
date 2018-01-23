@@ -36,7 +36,6 @@ module.exports = function(app) {
               return type.id != categoryID;
             }
             //pushing the category type_name of users tasks to array only ONCE
-            // console.log(currentCategories.every(checkTypeArray))
             if(currentCategories.every(checkTypeArray)){
               currentCategories.push(results.Category);
             }
@@ -51,14 +50,7 @@ module.exports = function(app) {
             animation: true,
             animation2: true
           }
-          // if(tasks.length > 1){
-          //   userInfo.animation = false
-          //   userInfo.animation2 = false
-          // }
-          res.render('to-do', userInfo)
-            // userInfo.animation = false
-            // userInfo.animation2 = false          
-
+          res.render('to-do', userInfo)        
         })
       }else{
         db.User.findAll({
@@ -74,7 +66,6 @@ module.exports = function(app) {
               userName: user[0].firstName
             }
             res.render('blank-user', blankUser);
-            // res.json(user);
           })
         })
         
@@ -102,7 +93,6 @@ module.exports = function(app) {
             return type.id != categoryID;
           }
           //pushing the category type_name of users tasks to array only ONCE
-          // console.log(currentCategories.every(checkTypeArray))
           if(currentCategories.every(checkTypeArray)){
             currentCategories.push(results.Category);
           }
@@ -111,7 +101,6 @@ module.exports = function(app) {
           }
           
         });
-        console.log(currentCategoryItems);
         if(currentCategoryItems.length < 1){
           res.redirect(`/user/${req.params.id}/to-do`)
         }else{
@@ -134,22 +123,19 @@ module.exports = function(app) {
 
   app.get("/sign-in", function(req, res) {
     res.render('sign-in');
-    });
+  });
 
   app.get("/sign-up", function(req, res) {
     res.render('sign-up');
-    });
+  });
 
   app.get("/test", function(req, res) {
-
-      db.Item.findAll().then(function(items){
-        db.Category.findAll().then(function(categories){
-          console.log(items);
-          console.log(categories);
-        })
-
+    db.Item.findAll().then(function(items){
+      db.Category.findAll().then(function(categories){
       })
-    });
+
+    })
+  });
 
 
 };

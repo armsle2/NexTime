@@ -12,7 +12,7 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all of the posts
+  // GET route for getting all of the users
   app.get("/api/users/", function(req, res) {
     db.User.findAll()
     .then(function(dbUser) {
@@ -35,9 +35,8 @@ module.exports = function(app) {
 
 
   
-  // POST route for saving a new post
+  // POST route for creating a new user
   app.post("/api/users/", function (req, res){
-    console.log(req.body);
     db.User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
