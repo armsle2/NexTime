@@ -44,4 +44,17 @@ This application has limitless potential, and the team has started brainstorming
 * Mobile platform with direct mobile notifications.
 * Smart technology that makes suggestions based on user preferences determined from user habits. 
 
+## Screenshots:
+
+![createaccount](https://user-images.githubusercontent.com/32542804/35289188-9b9d2cea-0034-11e8-8152-1b728b7adc32.png)
+![landing page](https://user-images.githubusercontent.com/32542804/35289190-9bb0708e-0034-11e8-9a6a-ba4e30012328.png)
+![login](https://user-images.githubusercontent.com/32542804/35289191-9bbbf684-0034-11e8-8574-2555697d85d6.png)
+![notificationmodal](https://user-images.githubusercontent.com/32542804/35289192-9bc7f09c-0034-11e8-807b-0406e081d9b9.png)
+![notificationmodaldetail](https://user-images.githubusercontent.com/32542804/35289193-9c2becaa-0034-11e8-9118-c14d0a90f152.png)
+![userpageadditem](https://user-images.githubusercontent.com/32542804/35289195-9c94615e-0034-11e8-8ea6-a1a678b477d3.png)
+![userpagecategorydisplay](https://user-images.githubusercontent.com/32542804/35289196-9cf80ca4-0034-11e8-953c-9640632b9649.png)
+![userpagefulldisplay](https://user-images.githubusercontent.com/32542804/35289197-9d2e0566-0034-11e8-9714-fccdf6136d4c.png)
+![userpageupdate](https://user-images.githubusercontent.com/32542804/35289200-9d8451be-0034-11e8-906a-2906de90b858.png)
+
+
 
