@@ -3,6 +3,9 @@
 ## Contributors:
 Leaveil Armstrong, Lisa Ewart, Taly Huang, and Janessa Hanna
 
+## Description:
+NexTime is a Smart To-Do list that reminds you about items on your list when you are nearby retail locations that match the categories of those items.
+
 ## Concept:
 
 You have just battled Atlanta traffic and now you are finally home.  Oops -- you forgot to pick up the main ingredient you need for the dinner you are making.  The last thing you want to do is go back out.  Sign up for the NexTime app, and next time you will not have to go back out because next time you won't forget!  
